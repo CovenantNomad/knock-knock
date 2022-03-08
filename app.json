@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "knock-knock",
+    "slug": "knock-knock",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "knock-knock"
+}
