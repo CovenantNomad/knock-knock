@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "573056452185",
+    "project_id": "knock-knock-product",
+    "storage_bucket": "knock-knock-product.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573056452185:android:6561496068afb615129348",
+        "android_client_info": {
+          "package_name": "com.knockknock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "573056452185-tukuqr717s5pp3t2tms43duk1euldcs7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuCu31vpLPWk_B-SadzXGdsP5t7X7e3R8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "573056452185-tukuqr717s5pp3t2tms43duk1euldcs7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "573056452185-usm6lmkd5fdicsgl51hi1p9bn09koaif.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.name.knockknock"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

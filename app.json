@@ -3,9 +3,15 @@
     "name": "knock-knock",
     "slug": "knock-knock",
     "version": "1.0.0",
+    "orientation": "portrait",
+    "android": {
+      "package": "com.knockknock",
+      "googleServicesFile": "./android/app/google-services.json"
+    },
     "assetBundlePatterns": [
       "**/*"
     ]
+    
   },
   "name": "knock-knock"
 }
