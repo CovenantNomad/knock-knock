@@ -1,31 +1,53 @@
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Divider, Icon } from 'react-native-elements';
-import SubmitButton from '../../components/atoms/Button/SubmitButton';
-
+import { useMutation, useQueryClient } from 'react-query';
+// api
+import { createRoutine } from '../../api/routines'
+// hook & state
+import userStore from '../../store/store';
+import routineStore from '../../store/routineStore';
+import useSelectWeekday from '../../hooks/useSelectWeekday';
 // components
 import MainContainer from '../../components/blocks/Containers/MainContainer';
 import Header from '../../components/blocks/Header/Header';
 import Hero from '../../components/blocks/Hero/Hero';
 import TimePicker from '../../components/blocks/TimePicker/TimePicker';
 import Weekdays from '../../components/blocks/Weekdays/Weekdays';
-import useSelectWeekday from '../../hooks/useSelectWeekday';
-import routineStore from '../../store/routineStore';
+import SubmitButton from '../../components/atoms/Button/SubmitButton';
+import SimpleModal from '../../components/blocks/Modal/SimpleModal';
 import { colors, fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } from '../../theme/theme';
 
-const AddScreen = ({ navigation, route }) => {
+
+const AddScreen = ({ navigation }) => {
+  const user = userStore(state => state.currentUser)
   const [ title, setTitle ] = useState("")
   const [ duration, setDuration ] = useState("")
   const [ weekdays, onToggleWeekday ] = useSelectWeekday()
   const [ date, setDate ] = useState(new Date())
   const color = routineStore(state => state.selectColor)
   const icon = routineStore(state => state.selectIcon)
+  const [ showModal, setShowModal ] = useState(false)
+  const [ modalMessage, setModalMessage ] = useState(false)
   
+  const mutation = useMutation(createRoutine, {
+    onSuccess: () => {
+      setTitle("")
+      setDuration("")
+      setShowModal(true)
+      setModalMessage("새로운 루틴이 생성되었습니다.")
+    },
+    onError: () => {
+      setShowModal(true)
+      setModalMessage("루틴 생성에 실패했습니다.")
+    },
+  })
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const weekday = weekdays.filter(item => item.select === true).map((item)=>item.id)
 
     const submitData = {
+      userId: user.uid,
       title,
       duration,
       weekday,
@@ -33,9 +55,10 @@ const AddScreen = ({ navigation, route }) => {
       minute: date.getMinutes(),
       color: color,
       icon: icon,
+      completed: false,
     }
 
-    console.log(submitData)
+    await mutation.mutateAsync(submitData)
   }
 
   return (
@@ -100,6 +123,7 @@ const AddScreen = ({ navigation, route }) => {
         </View>
         <SubmitButton onPress={onSubmit} label={"만들기"}/>  
       </ScrollView>
+      <SimpleModal show={showModal} setShow={setShowModal} message={modalMessage} />
     </MainContainer>
   );
 }
