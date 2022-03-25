@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import MainContainer from '../../components/blocks/Containers/MainContainer';
 
 const ReportScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text>ReportScreen</Text>
-    </View>
+    <MainContainer>
+      
+    </MainContainer>
   );
 }
 

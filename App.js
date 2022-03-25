@@ -10,9 +10,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <StatusBar barStyle='dark-content' backgroundColor={'#fff'} />
-      <SafeAreaProvider>
         <Navigation />
-      </SafeAreaProvider>
     </QueryClientProvider>
   );
 }

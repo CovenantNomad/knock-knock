@@ -30,3 +30,15 @@ export const getpermissions = async () => {
     return accessPrivileges
   }
 }
+
+export function getDate(date) {
+  return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+}
+
+export function convertAmPm(hour) {
+  return hour >= 12 ? '오후' : '오전'
+}
+
+export function convert12hour(hour) {
+  return hour >= 12 ? hour-12 : hour
+}

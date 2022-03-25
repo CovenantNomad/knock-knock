@@ -11,7 +11,7 @@ import useStore from '../../store/store';
 import AuthContainer from '../../components/blocks/Containers/AuthContainer';
 import SimpleModal from '../../components/blocks/Modal/SimpleModal';
 import Button from '../../components/atoms/Button/Button';
-import { emailRegExp } from '../../utils/uitls';
+import { emailRegExp } from '../../utils/uitils';
 
 import { colors, fontPercentage, heightPercentage, widthPercentage } from '../../theme/theme';
 

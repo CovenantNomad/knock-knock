@@ -2,15 +2,15 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { colors, heightPercentage } from '../../../theme/theme';
 
-const Hero = () => {
+const Hero = ({ source, content}) => {
   return (
     <View style={styles.container}>
       <Image 
-        source={require('../../../../assets/images/prayforukraine.jpeg')} 
+        source={source} 
         resizeMode={'contain'}
         style={styles.banner}
       />
-      <Text style={styles.content}>{`우크라이나를 위해 \n기도합니다`}</Text>
+      <Text style={styles.content}>{content}</Text>
     </View>
   );
 }

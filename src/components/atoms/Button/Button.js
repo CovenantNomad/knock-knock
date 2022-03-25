@@ -2,9 +2,9 @@ import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { colors, fontPercentage, fontSize, heightPercentage, spaces } from '../../../theme/theme';
 
-const Button = ({ onPress, label, loading }) => {
+const Button = ({ onPress, label, loading, width }) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress} disabled={loading}>
+    <TouchableOpacity style={[styles.container, {width: width ? width: '100%'}]} onPress={onPress} disabled={loading}>
       {loading ? (
         <ActivityIndicator color='#F5F5F5' />
       ) : (
@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: heightPercentage(spaces.m),
     borderRadius: 8,
-    width: '100%',
     minHeight: heightPercentage(40),
   },
   label: {

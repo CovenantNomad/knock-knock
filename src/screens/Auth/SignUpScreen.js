@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { Icon } from 'react-native-elements'
-import { emailRegExp } from '../../utils/uitls';
+import { emailRegExp } from '../../utils/uitils';
 // api
 import { createUser } from '../../api/auth';
 // components

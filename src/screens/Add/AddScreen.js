@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Divider, Icon } from 'react-native-elements';
-import { useMutation, useQueryClient } from 'react-query';
+import { QueryClient, useMutation, useQueryClient } from 'react-query';
 // api
 import { createRoutine } from '../../api/routines'
 // hook & state
@@ -65,7 +65,10 @@ const AddScreen = ({ navigation }) => {
     <MainContainer>
       <Header hasBackButton={false} title={"새로운 영적루틴 만들기"} navigation={navigation} route="home" />
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        <Hero />
+        <Hero 
+          source={require('../../../assets/images/prayforukraine.jpeg')}
+          content={`우크라이나를 위해 \n기도합니다`}
+        />
         <View style={styles.section}>
           <Text style={styles.menu}>루틴이름</Text>
           <View style={styles.textinputWrapper}>
