@@ -1,10 +1,10 @@
-## TODO
+# TODO
 
-# Add Screen
+## Add Screen
 
 - [ ] 루틴생성 시 제한사항 체크하기
 
-# Home Screen
+## Home Screen
 
 - [ ] score 계산
 - [ ] ListHeader Optimize
