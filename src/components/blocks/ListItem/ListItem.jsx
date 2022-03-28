@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Animated, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements'
+import { GestureDetector } from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { heightPercentage, spaces } from '../../../theme/theme';
 import { convert12hour, convertAmPm } from '../../../utils/uitils';
@@ -51,6 +52,8 @@ const ListItem = ({ item, isEnd, onToggleCompleted, onDeleted }) => {
       </TouchableOpacity>
     )
   }
+
+  console.log(`${item.title} 렌더링`)
 
   return (
     <Swipeable renderRightActions={(_, dragX) => renderRightAction(dragX)} renderLeftActions={(_, dragX) => renderLeftActions(dragX)}>
@@ -146,4 +149,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default React.memo(ListItem);
+const prevetnReRender = (prevProps, nextProps) => {
+  const {item: {completed : newState}} = nextProps
+  const {item: {completed : oldState}} = prevProps
+
+  return oldState === newState
+}
+
+export default React.memo(ListItem, prevetnReRender);

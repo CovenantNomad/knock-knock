@@ -31,7 +31,8 @@ const HomeScreen = ({ navigation }) => {
 
   const createMutation = useMutation(createRecord, {
     onSuccess: async () => {
-      await queryClient.refetchQueries(['fetchRecord', {uid : user.uid, date: selectedDate}])
+      await queryClient.fetchQuery(['fetchRecord', {uid : user.uid, date: selectedDate}], 
+      () => fetchRecord({ uid : user.uid, date: selectedDate }))
     }
   })
 
@@ -71,6 +72,7 @@ const HomeScreen = ({ navigation }) => {
     <MainContainer>
       <FlatList 
         data={routines?.sort((a, b) => a.hour - b.hour)}
+        extraData={routines}
         keyExtractor={(item) => item.title}
         renderItem={({ item, index }) => {
           const isEnd = index === routines.length - 1;
@@ -93,8 +95,8 @@ const HomeScreen = ({ navigation }) => {
             completedCount={completedCount}
           />
         }
-        ListEmptyComponent={<ListEmpty navigation={navigation}/>}
-        ListFooterComponent={<ListFooter />}
+        ListEmptyComponent={<ListEmpty navigation={navigation} />}
+        // ListFooterComponent={<ListFooter />}
       />
     </MainContainer>
   );

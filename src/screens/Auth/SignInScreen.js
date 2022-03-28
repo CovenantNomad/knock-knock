@@ -37,7 +37,7 @@ const SignInScreen = ({ navigation }) => {
       const userCredential = await signIn(email, password)
       const uid = userCredential.user.uid
       const userInfo = await getUserInfo(uid)
-      await AsyncStorage.setItem('token', uid)
+      await AsyncStorage.setItem('authentication', uid)
       setCurrentUserState({
         name: userInfo.name,
         email: userInfo.email,
