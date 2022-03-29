@@ -14,6 +14,7 @@ import { heightPercentage, spaces, widthPercentage } from '../../theme/theme';
 import ListEmpty from '../../components/blocks/ListEmpty/ListEmpty';
 import Hero from '../../components/blocks/Hero/Hero';
 import ListFooter from '../../components/blocks/ListFooter/ListFooter';
+import { createScore, updateScore } from '../../api/score';
 
 
 const HomeScreen = ({ navigation }) => {
@@ -48,6 +49,9 @@ const HomeScreen = ({ navigation }) => {
     }
   })
 
+  const createScoreMutation = useMutation(createScore)
+  const updateScoreMutation = useMutation(updateScore)
+
   const refresh = () => {
     setRefreshing(true)
     createMutation.mutate({ uid: user.uid, date: selectedDate})
@@ -66,7 +70,12 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     createMutation.mutate({ uid: user.uid, date: selectedDate})
+    createScoreMutation.mutate({ uid: user.uid, date: selectedDate})
   }, [selectedDate])
+
+  useEffect(() => {
+    updateScoreMutation.mutate({ uid: user.uid, date: selectedDate, score: percentage })
+  }, [percentage])
 
   return (
     <MainContainer>

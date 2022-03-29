@@ -42,3 +42,23 @@ export function convertAmPm(hour) {
 export function convert12hour(hour) {
   return hour >= 12 ? hour-12 : hour
 }
+
+export function getMondayDate(d) {
+  var paramDate = new Date(d);
+
+  var day = paramDate.getDay();
+  var diff = paramDate.getDate() - day + (day == 0 ? -6 : 1);
+  paramDate.setDate(diff);
+  paramDate.setUTCHours(0,0,0,0);
+  return new Date(paramDate);
+}
+
+export function getSundayDate(d) {
+  var paramDate = new Date(d);
+
+  var day = paramDate.getDay();
+  var diff = paramDate.getDate() - day + (day == 0 ? 0 : 7);
+  paramDate.setDate(diff);
+  paramDate.setUTCHours(23,59,59,999);
+  return new Date(paramDate);
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'react-native'
 import AppLoading from 'expo-app-loading';
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -6,9 +6,12 @@ import firestore from '@react-native-firebase/firestore';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LogBox } from 'react-native';
 import Navigation from './src/navigations/Navigation';
 import userStore from './src/store/store';
+import * as SplashScreen from 'expo-splash-screen';
+
 
 const queryClient = new QueryClient();
 
@@ -20,7 +23,9 @@ export default function App() {
   const preloadAssets = () => {
     const loadedAssets = [require('./assets/images/counting_stars.png'), require('./assets/images/honestday.jpeg'), require('./assets/images/prayforukraine.jpeg')]
     const promiseAssets = loadedAssets.map((asset) => Asset.loadAsync(asset))
-    return Promise.all(promiseAssets)
+    const loadedFont = [Ionicons.font]
+    const promiseFonts = loadedFont.map((font) => Font.loadAsync(font))
+    return Promise.all([promiseAssets, promiseFonts])
   }
 
   const startAsync = async () => {

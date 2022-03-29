@@ -53,8 +53,6 @@ const ListItem = ({ item, isEnd, onToggleCompleted, onDeleted }) => {
     )
   }
 
-  console.log(`${item.title} 렌더링`)
-
   return (
     <Swipeable renderRightActions={(_, dragX) => renderRightAction(dragX)} renderLeftActions={(_, dragX) => renderLeftActions(dragX)}>
       <View style={[
