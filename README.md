@@ -11,25 +11,25 @@
 - [ ] FlastList - fetch, update 차이 해결하기
 - [ ] [react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system! 익히기
 
-# Report Screen
+## Report Screen
 
 - [ ] Score Chart 구현
 - [ ] Routine List 구현
 
-# Profile Screen
+## Profile Screen
 
 - [ ] LogOut
 - [ ] Name Edit
 - [ ] Routine Edit
 
-# Auth
+## Auth
 
 - [ ] 비밀번호 변경하기
 
-# Overall
+## Overall
 
 - [ ] SplashScreen & Icon 적용하기
 
-# Test
+## Test
 
 - [ ] 기기테스트
