@@ -20,6 +20,8 @@ import com.facebook.react.bridge.JSIModulePackage;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
+
 public class MainApplication extends Application implements ReactApplication {
   private final ReactNativeHost mReactNativeHost = new ReactNativeHostWrapper(
     this,
@@ -36,7 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
       // Packages that cannot be autolinked yet can be added manually here, for example:
       // packages.add(new MyReactNativePackage());
       return packages;
-    }
+    };
 
     @Override
     protected String getJSMainModuleName() {

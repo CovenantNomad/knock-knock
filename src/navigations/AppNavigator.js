@@ -1,11 +1,13 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 // screnns
 import HomeScreen from '../screens/Home/HomeScreen';
 import ReportScreen from '../screens/Report/ReportScreen';
 import ProfileNavigator from './ProfileNavigator';
 import CreateNavigator from './CreateNavigator';
+import { color } from 'react-native-reanimated';
+import { colors } from '../theme/theme';
 
 const Tab = createBottomTabNavigator()
 
@@ -17,23 +19,23 @@ const AppNavigator = () => {
 
       switch (route.name) {
         case "home":
-          iconName = "home-sharp"
+          iconName = "home"
           break;
         case "report":
-            iconName = "bar-chart-sharp"
+            iconName = "barschart"
             break;
         case "add":
-          iconName = "add-circle"
+          iconName = "addfile"
           break;
         case "profile":
-          iconName = "people"
+          iconName = "user"
           break;
         default:
-          iconName = "home-sharp"
+          iconName = "home"
           break;
       }
 
-      return <Ionicons name={iconName} size={28} color={focused ? '#222' : "#dee2e6"} />
+      return <AntDesign name={iconName} size={28} color={focused ? colors.black : colors.gray500} />
     },
     tabBarShowLabel: false,
     headerShown: false,

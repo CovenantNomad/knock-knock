@@ -33,6 +33,7 @@ export default function App() {
     const token = await AsyncStorage.getItem("authentication");
     
     if (token) {
+      console.log("토큰 가져옴")
       await firestore().collection('users').doc(token).get()
       .then((doc) => {
         if (doc.exists) {
@@ -51,6 +52,7 @@ export default function App() {
         console.log("@getUserInfo: ", error.message)
       })
     } else {
+      console.log('토큰없음 - 로그인창으로')
       setUser({
         isLoggedIn: false,
       })

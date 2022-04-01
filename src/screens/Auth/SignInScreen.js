@@ -33,8 +33,10 @@ const SignInScreen = ({ navigation }) => {
     const { email, password } = data
 
     try {
+      console.log('로그인 시작')
       const userCredential = await signIn(email, password)
       const uid = userCredential.user.uid
+      console.log("로그인됨 -", uid)
       const userInfo = await getUserInfo(uid)
       await AsyncStorage.setItem('authentication', uid)
       setCurrentUserState({

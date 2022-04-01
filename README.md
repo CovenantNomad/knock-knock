@@ -18,7 +18,10 @@
 
 ## Report Screen
 
-- [ ] Score Chart 구현
+- [x] Score Chart 구현
+- [ ] Score Chart 디자인 수정
+- [ ] 주단위로 월별 통계 섹션 만들기 (고민하기)
+- [ ] score 데이터 추가 -> month/week/completed/total
 - [ ] Routine List 구현
 
 ## Profile Screen

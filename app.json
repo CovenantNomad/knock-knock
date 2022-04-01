@@ -7,15 +7,22 @@
     "android": {
       "package": "com.knockknock",
       "googleServicesFile": "./android/app/google-services.json"
+      
     },
     "ios": {
       "splash": {
         "image": "./assets/images/splash.png",
         "resizeMode": "cover"
-      }
+      },
+      "googleServicesFile": "./ios/knockknock/GoogleService-Info.plist"
     },
     "assetBundlePatterns": [
       "**/*"
+    ],
+    "plugins": [
+      "@react-native-firebase/app",
+      "@react-native-firebase/perf",
+      "@react-native-firebase/crashlytics"
     ]
   },
   "name": "knock-knock"
