@@ -25,7 +25,7 @@
 
 - [x] LogOut
 - [x] Name Edit
-- [ ] 비밀번호 변경하기
+- [x] 비밀번호 변경하기
 - [ ] 회원탈퇴 적용안됨 - withdrawalPrimaryAction 수정 & 데이터 삭제
 - [ ] Routine Screen (All | isActive)
 - [ ] Routine Editor Screen
@@ -33,7 +33,7 @@
 
 ## Auth
 
-- [ ] 비밀번호 변경하기
+- [x] 비밀번호 변경하기
 
 ## Overall
 
@@ -47,7 +47,7 @@
 
 ====================
 
-# Version.2 요구사항
+# Version.2.0 요구사항
 
 ## Community 기능 추가
 

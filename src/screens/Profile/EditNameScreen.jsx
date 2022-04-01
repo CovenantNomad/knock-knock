@@ -10,7 +10,6 @@ import { colors, fontPercentage, fontSize, heightPercentage, spaces, widthPercen
 import { useMutation } from 'react-query';
 import { updateName } from '../../api/auth';
 import userStore from '../../store/store';
-import firestore from '@react-native-firebase/firestore';
 
 const EditNameScreen = ({ navigation, route }) => {
   const user = userStore(state => state.currentUser)
