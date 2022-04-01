@@ -10,7 +10,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LogBox } from 'react-native';
 import Navigation from './src/navigations/Navigation';
 import userStore from './src/store/store';
-import * as SplashScreen from 'expo-splash-screen';
+import SplashScreen from 'react-native-splash-screen';
 
 
 const queryClient = new QueryClient();
@@ -31,7 +31,7 @@ export default function App() {
   const startAsync = async () => {
     console.log("앱로딩 실행중")
     const token = await AsyncStorage.getItem("authentication");
-
+    
     if (token) {
       await firestore().collection('users').doc(token).get()
       .then((doc) => {
@@ -42,9 +42,11 @@ export default function App() {
             uid: token,
             isLoggedIn: true,
           })
+          console.log("Success Getting UserInfo");
         } else {
           console.log("No user document!");
         }
+        SplashScreen.hide()
       }).catch((error) => {
         console.log("@getUserInfo: ", error.message)
       })

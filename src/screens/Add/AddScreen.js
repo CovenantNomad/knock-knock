@@ -12,28 +12,36 @@ import useSelectWeekday from '../../hooks/useSelectWeekday';
 import MainContainer from '../../components/blocks/Containers/MainContainer';
 import Header from '../../components/blocks/Header/Header';
 import Hero from '../../components/blocks/Hero/Hero';
-import TimePicker from '../../components/blocks/TimePicker/TimePicker';
-import Weekdays from '../../components/blocks/Weekdays/Weekdays';
 import SubmitButton from '../../components/atoms/Button/SubmitButton';
 import SimpleModal from '../../components/blocks/Modal/SimpleModal';
 import { colors, fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } from '../../theme/theme';
-
+import RoutineProps from '../../components/blocks/RoutineProps/RoutineProps';
+import RoutineRepeat from '../../components/blocks/RoutineRepeat/RoutineRepeat';
+import RoutineTime from '../../components/blocks/RoutineTime/RoutineTime';
+import RoutineListItem from '../../components/blocks/RoutineListItem/RoutineListItem';
+import RoutineGoal from '../../components/blocks/RoutineGoal/RoutineGoal';
 
 const AddScreen = ({ navigation }) => {
   const user = userStore(state => state.currentUser)
   const [ title, setTitle ] = useState("")
-  const [ duration, setDuration ] = useState("")
+  const [ isTodo, setIsTodo ] = useState(true)
+  const [ isTemporary, setIsTemporary] = useState(false)
+  const [ isTimeGoal, setIsTimeGoal ] = useState(true)
+  const [ goal, setGoal ] = useState("")
   const [ weekdays, onToggleWeekday ] = useSelectWeekday()
   const [ date, setDate ] = useState(new Date())
   const color = routineStore(state => state.selectColor)
+  const setSelectColor = routineStore(state => state.setSelectColor)
   const icon = routineStore(state => state.selectIcon)
+  const setSelectIcon = routineStore(state => state.setSelectIcon)
   const [ showModal, setShowModal ] = useState(false)
-  const [ modalMessage, setModalMessage ] = useState(false)
+  const [ modalMessage, setModalMessage ] = useState("")
   
   const mutation = useMutation(createRoutine, {
     onSuccess: () => {
       setTitle("")
-      setDuration("")
+      setSelectColor('#FC4F4F')
+      setSelectIcon('cross')
       setShowModal(true)
       setModalMessage("새로운 루틴이 생성되었습니다.")
     },
@@ -45,17 +53,37 @@ const AddScreen = ({ navigation }) => {
 
   const onSubmit = async () => {
     const weekday = weekdays.filter(item => item.select === true).map((item)=>item.id)
+    const isCompleted = !isTodo
+
+    if (title.length === 0) {
+      setShowModal(true)
+      setModalMessage("루틴이름을 지정해주세요")
+      return
+    }
+
+    if (weekday.length === 0 && isTemporary === false) {
+      setShowModal(true)
+      setModalMessage("반복할 요일을 선택해주세요")
+      return
+    }
 
     const submitData = {
       userId: user.uid,
       title,
-      duration,
+      isTodo,
+      isTemporary,
+      isTimeGoal,
+      goal,
+      count: 0,
       weekday,
       hour: date.getHours(), 
       minute: date.getMinutes(),
       color: color,
       icon: icon,
-      completed: false,
+      isCompleted,
+      isActive: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }
 
     await mutation.mutateAsync(submitData)
@@ -63,7 +91,7 @@ const AddScreen = ({ navigation }) => {
 
   return (
     <MainContainer>
-      <Header hasBackButton={false} title={"새로운 영적루틴 만들기"} navigation={navigation} route="home" />
+      <Header hasBackButton={false} title={"새 영적루틴 만들기"} navigation={navigation} route="home" />
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <Hero 
           source={require('../../../assets/images/prayforukraine.jpeg')}
@@ -77,52 +105,24 @@ const AddScreen = ({ navigation }) => {
               onChangeText={text => {setTitle(text)}}
               style={styles.textinput}
               selectionColor={colors.textInputSelect}
+              autoFocus={false}
             />
           </View>
-          <Text style={styles.menu}>소요시간</Text>
-          <View style={styles.textinputWrapper}>
-            <TextInput 
-              value={duration}
-              onChangeText={text => {setDuration(text)}}
-              style={styles.textinput}
-              selectionColor={colors.textInputSelect}
-            />
-          </View>
+          <RoutineProps state={isTodo} setState={setIsTodo} />
         </View>
         <View style={styles.section}>
-          <Text style={styles.menu}>루틴 주기</Text>
-          <View style={styles.weekdaysWrapper}>
-            <Weekdays weekdays={weekdays} onToggleFunc={onToggleWeekday} />
-          </View>
-          <Text style={styles.menu}>루틴 시간</Text>
-          <View style={styles.weekdaysWrapper}>
-            <TimePicker date={date} setDate={setDate}/>
-          </View>
+          <RoutineRepeat isTemporary={isTemporary} setIsTemporary={setIsTemporary} weekdays={weekdays} onToggleFunc={onToggleWeekday} />
+          {isTodo && <RoutineTime date={date} setDate={setDate} />}
         </View>
-        <View style={styles.section}>
-          <View style={styles.subSection}>
-            <Text style={styles.menu}>색상 선택</Text>
-            <Icon
-              name='md-chevron-forward-outline'
-              type='ionicon'
-              size={24}
-              style={{ marginRight: widthPercentage(-4) }}
-              onPress={() => navigation.navigate('selectColor')}
-            />
+        {isTodo && (
+          <View style={styles.section}>
+            <RoutineGoal isTimeGoal={isTimeGoal} setIsTimeGoal={setIsTimeGoal} goal={goal} setGoal={setGoal} />
           </View>
+        )}
+        <View style={styles.section}>
+          <RoutineListItem title={'색상 선택'} onPress={() => navigation.navigate('selectColor')} />
           <Divider />
-          <View style={styles.subSection}>
-            <Text style={styles.menu}>아이콘 선택</Text>
-            <Icon
-              name='md-chevron-forward-outline'
-              type='ionicon'
-              size={24}
-              style={{ marginRight: widthPercentage(-4) }}
-              onPress={() => navigation.navigate('selectIcon', {
-                
-              })}
-            />
-          </View>
+          <RoutineListItem title={'아이콘 선택'} onPress={() => navigation.navigate('selectIcon')} />
         </View>
         <SubmitButton onPress={onSubmit} label={"만들기"}/>  
       </ScrollView>
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     width: '100%',
     paddingHorizontal: widthPercentage(spaces.m),
-    paddingTop: heightPercentage(spaces.m),
+    paddingVertical: heightPercentage(spaces.m),
     marginBottom: heightPercentage(spaces.xxs),
     borderColor: '#EBF2FF',
     borderWidth: 1,
@@ -162,22 +162,10 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },  
   textinput: {
-    fontSize: 16,
+    fontSize: fontPercentage(fontSize.medium),
     paddingVertical: heightPercentage(spaces.xxs),
     width: '100%',
   },
-  weekdaysWrapper: {
-    flexDirection: 'row', 
-    justifyContent: 'space-around',
-    paddingHorizontal: widthPercentage(spaces.xs),
-    paddingVertical: heightPercentage(spaces.xxs),
-    marginBottom: heightPercentage(spaces.m),
-  },
-  subSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: heightPercentage(spaces.m),
-  }
 });
 
 export default AddScreen;

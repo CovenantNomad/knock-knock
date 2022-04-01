@@ -27,7 +27,7 @@ const ColorScreen = ({ navigation }) => {
       <Header hasBackButton={true} title={"색상 선택"} navigation={navigation} route="createRoutine"/>
       <View style={styles.body}>
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: heightPercentage(spaces.m) }}>
-          <Text style={{ flex: 1, fontSize: fontPercentage(fontSize.medium), fontWeight: '800' }}>선택한 색상</Text>
+          <Text style={{ flex: 1, fontSize: fontPercentage(fontSize.menu), fontWeight: '400' }}>선택한 색상</Text>
           <View style={{ width: widthPercentage(40), height: heightPercentage(40), borderRadius: 12, backgroundColor: color, marginRight: widthPercentage(4) }}></View>
         </View>
         <FlatList 

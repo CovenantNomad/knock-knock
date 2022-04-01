@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 // apis
-import { createRecord, deleteRecordById, fetchRecord, updateRecordById } from '../../api/records';
+import { createRecord, deleteRecordById, fetchRecord, updateCount, updateRecordById } from '../../api/records';
+import firestore from '@react-native-firebase/firestore';
 // states & hooks
 import userStore from '../../store/store';
 import useCount from '../../hooks/useCount';
@@ -15,7 +16,9 @@ import ListEmpty from '../../components/blocks/ListEmpty/ListEmpty';
 import Hero from '../../components/blocks/Hero/Hero';
 import ListFooter from '../../components/blocks/ListFooter/ListFooter';
 import { createScore, updateScore } from '../../api/score';
-
+import ListItemForCount from '../../components/blocks/ListItem/ListItemForCount';
+import { getDate } from '../../utils/uitils';
+import * as SplashScreen from 'expo-splash-screen';
 
 const HomeScreen = ({ navigation }) => {
   const calendarRef = useRef()
@@ -23,6 +26,7 @@ const HomeScreen = ({ navigation }) => {
   const queryClient = useQueryClient()
   const [ selectedDate, setSelectedDate ] = useState(new Date())
   const [ refreshing, setRefreshing ] = useState(false)
+  // const [ routines, setRoutines ] = useState([])
 
   const { isLoading, isError, data : routines } = useQuery(
     ['fetchRecord', {uid : user.uid, date: selectedDate}], 
@@ -43,7 +47,7 @@ const HomeScreen = ({ navigation }) => {
     }
   })
 
-  const deletedMutation = useMutation(deleteRecordById, {
+  const countMutation = useMutation(updateCount, {
     onSuccess: async () => {
       await queryClient.refetchQueries(['fetchRecord', {uid : user.uid, date: selectedDate}])
     }
@@ -58,12 +62,12 @@ const HomeScreen = ({ navigation }) => {
     setRefreshing(false)
   } 
 
-  const onToggleCompleted = (uid, docId, completed) => {
-    completedMutation.mutate({ uid, docId, completed })
+  const onToggleCompleted = (uid, docId, isCompleted) => {
+    completedMutation.mutate({ uid, docId, isCompleted })
   }
 
-  const onDeleted = ( uid, docId ) => {
-    deletedMutation.mutate({ uid, docId })
+  const onToggleCount = (uid, docId, count) => {
+    countMutation.mutate({ uid, docId, count })
   }
 
   const [ percentage, completedCount ] = useCount(routines)
@@ -87,7 +91,7 @@ const HomeScreen = ({ navigation }) => {
           const isEnd = index === routines.length - 1;
           return (
             <View style={{ paddingHorizontal: widthPercentage(spaces.m), backgroundColor: '#fff' }}>
-              <ListItem item={item} isEnd={isEnd} onToggleCompleted={onToggleCompleted} onDeleted={onDeleted} key={item.title}/>
+              <ListItem item={item} isEnd={isEnd} onToggleCompleted={onToggleCompleted} key={item.title}/>
             </View>
           )
         }}
@@ -105,7 +109,7 @@ const HomeScreen = ({ navigation }) => {
           />
         }
         ListEmptyComponent={<ListEmpty navigation={navigation} />}
-        // ListFooterComponent={<ListFooter />}
+        ListFooterComponent={<ListFooter onPress={() => navigation.navigate('add')}/>}
       />
     </MainContainer>
   );

@@ -4,7 +4,6 @@ import storage from '@react-native-firebase/storage';
 
 
 export const createUser = async (user) => {
-
   try {
     console.log("회원가입 시작")
     await auth().createUserWithEmailAndPassword(user.email, user.password)
@@ -54,9 +53,8 @@ export const logOut = async () => {
 
   } catch (error) {
     console.log("Error @logOut: ", error)
+    return false;
   }
-
-  return false;
 }
 
 export const getCurrentUser = () => {
@@ -73,4 +71,22 @@ export const getUserInfo = async (uid) => {
   } catch (error) {
     console.log("Error @getUserInfo: ", error)
   }
+}
+
+export const withdrawal = async () => {
+  try {
+    const user = auth().currentUser
+    await user.delete()
+
+    return true
+  } catch (error) {
+    console.log("Error @getUserInfo: ", error)
+    return false
+  }
+}
+
+export const updateName = async ({uid, updateName}) => {
+  return await firestore().collection('users').doc(uid).update({
+    name: updateName
+  })
 }

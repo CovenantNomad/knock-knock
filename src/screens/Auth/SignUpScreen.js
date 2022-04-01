@@ -7,9 +7,10 @@ import { emailRegExp } from '../../utils/uitils';
 import { createUser } from '../../api/auth';
 // components
 import AuthContainer from '../../components/blocks/Containers/AuthContainer';
-import Button from '../../components/atoms/Button/Button';
+
 import AuthModal from '../../components/blocks/Modal/AuthModal';
 import { colors, fontPercentage, heightPercentage, spaces, widthPercentage } from '../../theme/theme';
+import AuthButton from '../../components/atoms/Button/AuthButton';
 
 
 
@@ -173,7 +174,7 @@ const SignUpScreen = ({ navigation }) => {
           </View>
         {errors.passwordConfirm && <Text style={styles.errorMsg}>{errors?.passwordConfirm?.message || '비밀번호를 한번 더 입력해주세요'}</Text>}
         <View style={styles.footer}>
-          <Button label="회원가입" onPress={handleSubmit(onSubmit)} loading={loading} />
+          <AuthButton label="회원가입" onPress={handleSubmit(onSubmit)} loading={loading} />
         </View>  
         <AuthModal show={showModal} setShow={setShowModal} response={response} navigation={navigation}/>
       </View>

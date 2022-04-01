@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Animated, TouchableOpacity } from 'react-native';
-import { Icon } from 'react-native-elements'
+import { Divider, Icon } from 'react-native-elements'
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import { heightPercentage, spaces } from '../../../theme/theme';
+import { heightPercentage, spaces, widthPercentage } from '../../../theme/theme';
 import { convert12hour, convertAmPm } from '../../../utils/uitils';
 
 
-const ListItem = ({ item, isEnd, onToggleCompleted }) => {
+const ListItemForCount = ({ item, isEnd, onToggleCount }) => {
 
   const renderRightAction = (dragX) => {
     const scale = dragX.interpolate({
@@ -22,7 +22,7 @@ const ListItem = ({ item, isEnd, onToggleCompleted }) => {
     })
 
     return (
-      <TouchableOpacity onPress={() => onToggleCompleted(item.userId, item.recordId, item.isCompleted)}>
+      <TouchableOpacity onPress={() => onToggleCount(item.userId, item.recordId, item.count)}>
         <Animated.View style={[styles.button, { opacity: opacity }]}>
           <Animated.Text style={{ color: '#fff', fontWeight: '800', transform: [{ scale }] }}>{item.isCompleted ? "cancelled" : "completed"}</Animated.Text>
         </Animated.View>
@@ -53,9 +53,13 @@ const ListItem = ({ item, isEnd, onToggleCompleted }) => {
               <Text style={styles.subtitle}>{item.isCompleted ? 'completed': 'uncompleted'}</Text>
             </View>
             {item.isTodo && (
-              <View>
+              <View >
                 <Text style={styles.alarm}>{convertAmPm(item.hour)} {String(convert12hour(item.hour)).padStart(2, '0')}:{String(item.minute).padStart(2, '0')}</Text>
-                <Text style={styles.duration}>{item.goal}{item.isTimeGoal ? "분":"번"}</Text>
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={styles.duration}>{item.count}번</Text>
+                  <Divider orientation={'vertical'} width={1} style={{ marginHorizontal: widthPercentage(spaces.s)}}/>
+                  <Text style={styles.duration}>{item.goal}번</Text>
+                </View>
               </View>
             )}
           </View>
@@ -112,10 +116,12 @@ const styles = StyleSheet.create({
   },
   alarm: {
     fontSize: 14,
+    textAlign: 'right',
   },
   duration: {
     marginTop: 6,
     textAlign: 'right',
+    textAlignVertical: 'center'
   },
   button: {
     flex: 1,
@@ -128,12 +134,10 @@ const styles = StyleSheet.create({
 });
 
 const prevetnReRender = (prevProps, nextProps) => {
-  const {item: {completed : newState}} = nextProps
-  const {item: {completed : oldState}} = prevProps
+  const {item: {isCompleted : newState}} = nextProps
+  const {item: {isCompleted : oldState}} = prevProps
 
   return oldState === newState
 }
 
-// export default React.memo(ListItem, prevetnReRender);
-
-export default ListItem;
+export default React.memo(ListItemForCount, prevetnReRender);

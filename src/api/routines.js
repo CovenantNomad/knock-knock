@@ -12,3 +12,18 @@ export const createRoutine = async (newRoutine) => {
     return firestore().collection('users').doc(newRoutine.userId).collection('routines').add(newRoutine)
   })
 }
+
+export const findAllRoutine = async (uid) => {
+  const routineRef = firestore().collection('users').doc(uid).collection('routines')
+  return await routineRef.get()
+  .then((querySnapshot) => {
+    temp = []
+    querySnapshot.forEach((doc) => {
+      temp.push({
+        routineId: doc.id,
+        ...doc.data()
+      })
+    })
+    return temp
+  })
+}

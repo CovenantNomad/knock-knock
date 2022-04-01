@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const EditScreen = () => {
+const RoutineScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>EditScreen</Text>
+      <Text>RoutineScreen</Text>
     </View>
   );
 }
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditScreen;
+export default RoutineScreen;

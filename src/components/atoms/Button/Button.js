@@ -1,32 +1,39 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { colors, fontPercentage, fontSize, heightPercentage, spaces } from '../../../theme/theme';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { colors, fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } from '../../../theme/theme';
 
-const Button = ({ onPress, label, loading, width }) => {
+const Button = ({ onPress, label, isLeft, isTop, isSelect }) => {
   return (
-    <TouchableOpacity style={[styles.container, {width: width ? width: '100%'}]} onPress={onPress} disabled={loading}>
-      {loading ? (
-        <ActivityIndicator color='#F5F5F5' />
-      ) : (
-        <Text style={styles.label}>{label}</Text>
-      )}
+    <TouchableOpacity style={[
+        styles.button, 
+        {
+          marginRight: isLeft && widthPercentage(spaces.xxs),
+          marginLeft: !isLeft && widthPercentage(spaces.xxs),
+          marginBottom: isTop && heightPercentage(spaces.s),
+          backgroundColor: isSelect ? colors.button : colors.white
+        }
+      ]} 
+      onPress={onPress}
+    >
+      <Text style={[styles.label, {color: isSelect ? colors.white : colors.button}]}>{label}</Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.button,
+  button: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: heightPercentage(spaces.m),
-    borderRadius: 8,
-    minHeight: heightPercentage(40),
+    borderRadius: 12,
+    borderColor: colors.button,
+    borderWidth: 1,
   },
   label: {
     color: 'white',
-    fontSize: fontPercentage(fontSize.large),
-    fontWeight: '800',
+    fontSize: fontPercentage(fontSize.medium),
+    fontWeight: '700',
   },
 });
 

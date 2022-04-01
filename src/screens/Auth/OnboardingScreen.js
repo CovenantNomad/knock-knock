@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 // components
 import AuthContainer from '../../components/blocks/Containers/AuthContainer';
-import Button from '../../components/atoms/Button/Button';
 import { fontPercentage, heightPercentage, widthPercentage } from '../../theme/theme';
+import AuthButton from '../../components/atoms/Button/AuthButton';
 
 
 const OnboardingScreen = ({ navigation }) => {
@@ -16,7 +16,7 @@ const OnboardingScreen = ({ navigation }) => {
         <Text style={styles.subtitle}>{`습관을 따라\n주님과 동행하는 시간`}</Text>
       </View>
       <View style={[ styles.authSection, { flex: 0.2 } ]}>
-        <Button label="로그인" onPress={() => navigation.navigate("signin")} />
+        <AuthButton label="로그인" onPress={() => navigation.navigate("signin")} />
         <TouchableOpacity 
           style={styles.linkTextWrapper}
           onPress={() => navigation.navigate("signup")}>

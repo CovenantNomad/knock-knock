@@ -9,10 +9,9 @@ import { signIn, getUserInfo } from '../../api/auth';
 import useStore from '../../store/store';
 //Components
 import AuthContainer from '../../components/blocks/Containers/AuthContainer';
+import AuthButton from '../../components/atoms/Button/AuthButton';
 import SimpleModal from '../../components/blocks/Modal/SimpleModal';
-import Button from '../../components/atoms/Button/Button';
 import { emailRegExp } from '../../utils/uitils';
-
 import { colors, fontPercentage, heightPercentage, widthPercentage } from '../../theme/theme';
 
 const SignInScreen = ({ navigation }) => {
@@ -129,7 +128,7 @@ const SignInScreen = ({ navigation }) => {
         </View>
       {errors.password && <Text style={styles.errorMsg}>{errors?.password?.message || '비밀번호를 입력해주세요'}</Text>}
       <View style={styles.footer}>
-        <Button label="로그인" onPress={handleSubmit(onSubmit)} loading={loading}/>
+        <AuthButton label="로그인" onPress={handleSubmit(onSubmit)} loading={loading}/>
         <Text 
           style={styles.forgotPW}
           onPress={() => navigation.navigate("forgottenPassword")}

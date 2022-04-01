@@ -36,9 +36,15 @@ export const fetchRecord = async ({ uid, date }) => {
   })
 }
 
-export const updateRecordById = async ({ uid, docId, completed }) => {
+export const updateRecordById = async ({ uid, docId, isCompleted }) => {
   return await firestore().collection('users').doc(uid).collection('records').doc(docId).update({
-    completed: !completed
+    isCompleted: !isCompleted
+  })
+}
+
+export const updateCount = async ({ uid, docId, count }) => {
+  return await firestore().collection('users').doc(uid).collection('records').doc(docId).update({
+    count: +count + 1
   })
 }
 

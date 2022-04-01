@@ -1,17 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { colors, heightPercentage } from '../../../theme/theme';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { colors, heightPercentage, spaces } from '../../../theme/theme';
+import * as Linking from 'expo-linking';
 
-const Hero = ({ source, content}) => {
+const Hero = ({ source, content, Link}) => {
+  
+  const link = () => {
+    Linking.openURL(Link)
+  }
+
   return (
-    <View style={styles.container}>
-      <Image 
-        source={source} 
-        resizeMode={'contain'}
-        style={styles.banner}
-      />
-      <Text style={styles.content}>{content}</Text>
-    </View>
+    <TouchableOpacity onPress={link}>
+      <View style={styles.container}>
+        <Image 
+          source={source} 
+          resizeMode={'contain'}
+          style={styles.banner}
+        />
+        <Text style={styles.content}>{content}</Text>
+      </View>
+    </TouchableOpacity>
   );
 }
 
@@ -23,8 +31,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.banner_background_color,
-    borderBottomColor: colors.hero_border_color,
-    borderBottomWidth: 1,
   },
   banner: {
     width: '100%',

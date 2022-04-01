@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import ReactNativeCalendarStrip from 'react-native-calendar-strip';
 
 import DashBoard from '../DashBoard/DashBoard';
-import { fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } from '../../../theme/theme';
+import { colors, fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } from '../../../theme/theme';
 
 
 const ListHeader = ({ calendarRef, date, setDate, percentage, totalCount, completedCount }) => {
@@ -14,14 +14,14 @@ const ListHeader = ({ calendarRef, date, setDate, percentage, totalCount, comple
         ref={calendarRef}
         selectedDate={date}
         calendarAnimation={{type: 'sequence', duration: 30}}
-        daySelectionAnimation={{type: 'border', duration: 200, borderWidth: 1, borderHighlightColor: '#3580FF'}}
+        daySelectionAnimation={{type: 'border', duration: 200, borderWidth: 1, borderHighlightColor: colors.primary}}
         style={{height: 100, paddingTop: 20, paddingBottom: 10}}
         calendarHeaderStyle={{color: 'black', marginBottom: 12}}
         // calendarColor={'#fff'}
         dateNumberStyle={{color: 'black'}}
         dateNameStyle={{color: 'black'}}
-        highlightDateNumberStyle={{color: '#3580FF'}}
-        highlightDateNameStyle={{color: '#3580FF'}}
+        highlightDateNumberStyle={{color: colors.primary }}
+        highlightDateNameStyle={{color: colors.primary }}
         iconContainer={{flex: 0.1}}
         onDateSelected={date => {
           setDate(new Date(date))

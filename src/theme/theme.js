@@ -5,18 +5,28 @@ import {
 } from "react-native-responsive-dimensions";
 
 export const colors = {
+  primary: '#2979ff',
+  secondary: '#2196f3',
+  warning: '#f44336',
+  white: '#fff',
+  black: '#222',
+  gray100: '#f5f5f5',
+  gray300: '#e0e0e0',
+  gray500: '#9e9e9e',
+  gray700: '#616161',
   auth_background_color: '#FFF',
   main_background_color: '#F5F5F5',
   banner_background_color: '#ECECEC',
-  button: '#222',
-  // button: '#0A1931',
+  button: '#2979ff',
+  submit_button: '#222',
   textInputSelect: '#222',
-  warning: '#FF6243',
-  hero_border_color: '#F5F5F5'
+  hero_border_color: '#EBF2FF',
+  divider: '#EBF2FF',
 }
 
 export const fontSize = {
   title: 24,
+  menu: 18,
   large: 20,
   medium: 16,
   small: 14,

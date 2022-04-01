@@ -12,6 +12,7 @@ import { fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } f
 const IconScreen = ({ navigation }) => {
   const selectIcon = routineStore(state => state.selectIcon)
   const setSelectIcon = routineStore(state => state.setSelectIcon)
+  const selectColor = routineStore(state => state.selectColor)
 
   const renderIcons = ({ item }) => {
     return (
@@ -29,6 +30,16 @@ const IconScreen = ({ navigation }) => {
     <MainContainer>
       <Header hasBackButton={true} title={"아이콘 선택"} navigation={navigation} route="createRoutine"/>
       <View style={styles.body}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: heightPercentage(spaces.xl)}}>
+          <Text style={{ flex: 1, fontSize: fontPercentage(fontSize.menu), fontWeight: '400' }}>선택한 아이콘</Text>
+          <Icon
+            name={selectIcon}
+            type='font-awesome-5'
+            containerStyle={[styles.selectIcon, {backgroundColor: '#F5F5F5'}]}
+            color={selectColor}
+            size={28}
+          />
+        </View>
         <FlatList 
           data={icons}
           keyExtractor={item => item}
@@ -67,6 +78,14 @@ const styles = StyleSheet.create({
     marginRight: widthPercentage(spaces.s),
     marginBottom: heightPercentage(spaces.m),
   },
+  selectIcon: {
+    width: widthPercentage(50),
+    height: heightPercentage(50),
+    borderRadius: 12, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    marginRight: widthPercentage(spaces.xxs),
+  }
 });
 
 export default IconScreen;

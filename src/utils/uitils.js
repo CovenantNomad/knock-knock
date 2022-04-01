@@ -43,6 +43,12 @@ export function convert12hour(hour) {
   return hour >= 12 ? hour-12 : hour
 }
 
+export function convertDay(date) {
+  const days = ['일', '월', '화', '수', '목', '금', '토']
+
+  return days[date]
+}
+
 export function getMondayDate(d) {
   var paramDate = new Date(d);
 

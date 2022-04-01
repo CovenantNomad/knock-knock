@@ -13,9 +13,6 @@ const ListEmpty = ({ navigation }) => {
         style={styles.image}
       />
       <Text style={styles.content}>오늘은 작성된 루틴이 없어요</Text>
-      <View style={{ marginVertical: heightPercentage(30)}}>
-        <Button label={'루틴 만들기'} onPress={onPress} width={widthPercentage(200)} />
-      </View>
     </View>
   );
 }
@@ -27,7 +24,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: heightPercentage(spaces.m)
+    paddingBottom: heightPercentage(spaces.xl)
   },
   image: {
     width: 280,
@@ -37,7 +34,6 @@ const styles = StyleSheet.create({
   content: {
     fontSize: fontPercentage(fontSize.large),
     fontWeight: '800',
-
   }
 });
 

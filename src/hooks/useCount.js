@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 const useCount = (routines) => {
 
   const counter = useCallback((routines) => {
-    return routines?.filter(routine => routine.completed).length
+    return routines?.filter(routine => routine.isCompleted).length
   }, [routines])
 
   const completedCount = useMemo(() => counter(routines), [routines])

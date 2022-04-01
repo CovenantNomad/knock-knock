@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   button: {
     width: '100%',
     minHeight: heightPercentage(60),
-    backgroundColor: colors.button,
+    backgroundColor: colors.submit_button,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: heightPercentage(spaces.m),

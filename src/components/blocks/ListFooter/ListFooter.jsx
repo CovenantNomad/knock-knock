@@ -1,48 +1,37 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { heightPercentage, spaces } from '../../../theme/theme';
-import * as Linking from 'expo-linking';
+import { StyleSheet,  View, Text, TouchableOpacity } from 'react-native';
+import { colors, fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } from '../../../theme/theme';
 
-const ListFooter = () => {
-
-  const link = () => {
-    Linking.openURL("https://smartstore.naver.com/honestday")
-  }
+const ListFooter = ({ onPress }) => {
 
   return (
-    <TouchableOpacity onPress={link}>
-      <View style={styles.container}>
-        <Image 
-          source={require('../../../../assets/images/honestday.jpeg')} 
-          resizeMode={'contain'}
-          style={styles.banner}
-        />
-        <Text style={styles.content}>{'하나님 나라를 세워가는\n정직한 하루'}</Text>
-      </View>
-    </TouchableOpacity>
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.button} onPress={onPress} >
+        <Text style={styles.label}>새 영적루틴 만들기</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    maxHeight: heightPercentage(80),
-    minHeight: heightPercentage(70),
-    width: '100%',
-    flexDirection: 'row',
+    paddingHorizontal: widthPercentage(spaces.m), 
+    backgroundColor: '#fff' ,
+    paddingBottom: heightPercentage(spaces.l),
+  },
+  button: {
+    minHeight: heightPercentage(40),
+    backgroundColor: colors.button,
     alignItems: 'center',
-    backgroundColor: '#fff',
-    marginTop: heightPercentage(spaces.xxs)
+    justifyContent: 'center',
+    paddingVertical: heightPercentage(spaces.m),
+    borderRadius: 8,
   },
-  banner: {
-    width: '100%',
-    height: '100%',
-    flex: 0.4,
+  label: {
+    color: 'white',
+    fontSize: fontPercentage(fontSize.large),
+    fontWeight: '800',
   },
-  content: {
-    fontSize: 20,
-    fontWeight: '700',
-    flex: 0.6,
-  }
 });
 
 export default ListFooter;

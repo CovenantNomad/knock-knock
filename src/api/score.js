@@ -10,6 +10,7 @@ export const createScore = async ({ uid, date }) => {
       firestore().collection('users').doc(uid).collection('scores').add({
         datetime: new Date(date.toISOString().substring(0, 10)),
         date: getDate(date),
+        day: date.getDay(),
         userId: uid,
         score: 0
       })
@@ -25,6 +26,17 @@ export const updateScore = async ({ uid, date, score }) => {
       firestore().collection('users').doc(uid).collection('scores').doc(doc.id).update({
         score
       })
+    })
+  })
+}
+
+export const fetchScore = async ({ uid, start, end}) => {
+  const scoreRef = firestore().collection('scores').where('datetime', '<', end).where('datetime', '>=', start).where('userId', '==', uid)
+  return await scoreRef.get()
+  .then((querySnapshot) => {
+    temp = []
+    querySnapshot.forEach((doc) => {
+      console.log(doc.data())
     })
   })
 }

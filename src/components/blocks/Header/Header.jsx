@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { fontPercentage, fontSize, heightPercentage, widthPercentage } from '../../../theme/theme';
+import { colors, fontPercentage, fontSize, heightPercentage, widthPercentage } from '../../../theme/theme';
 
 const Header = ({ title, hasBackButton, goBack, route, navigation }) => {
   return (
@@ -27,13 +27,15 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    minHeight: heightPercentage(48),
+    minHeight: heightPercentage(60),
     paddingHorizontal: widthPercentage(16),
     backgroundColor: '#FFF',
+    borderBottomColor: colors.hero_border_color,
+    borderBottomWidth: 1
   },
   title: {
     fontSize: fontPercentage(fontSize.title),
-    fontWeight: '700'
+    fontWeight: '400'
   }
 });
 

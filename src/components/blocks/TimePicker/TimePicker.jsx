@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { fontPercentage, fontSize, heightPercentage, spaces } from '../../../theme/theme';
+import { colors, fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } from '../../../theme/theme';
 
 const TimePicker = ({ date, setDate }) => {
   const [ showTimePicker, setShowTimePicker ] = useState(false)
@@ -18,7 +18,7 @@ const TimePicker = ({ date, setDate }) => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        <Text>시간설정</Text>
+        <Text style={styles.title}>시간설정</Text>
         <TouchableOpacity onPress={onToggleTimePicker}>
           <Text style={styles.timer}>{String(date.getHours()).padStart(2, '0')} : {String(date.getMinutes()).padStart(2, '0')}</Text>
         </TouchableOpacity>
@@ -48,6 +48,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingVertical: heightPercentage(spaces.s),
+    paddingHorizontal: widthPercentage(spaces.s),
+    borderRadius: 8,
+    borderColor: colors.hero_border_color,
+    borderWidth: 1,
   },
   section: {
     backgroundColor: '#ffffff',
@@ -60,7 +65,8 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
   },
   title: {
-    fontSize: fontPercentage(fontSize.medium)
+    fontSize: fontPercentage(fontSize.medium),
+    fontWeight: '700',
   },
   timer: {
     fontSize: fontPercentage(fontSize.medium),
