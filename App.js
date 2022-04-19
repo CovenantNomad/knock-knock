@@ -12,7 +12,6 @@ import Navigation from './src/navigations/Navigation';
 import userStore from './src/store/store';
 import SplashScreen from 'react-native-splash-screen';
 
-
 const queryClient = new QueryClient();
 
 export default function App() {
@@ -47,7 +46,6 @@ export default function App() {
         } else {
           console.log("No user document!");
         }
-        SplashScreen.hide()
       }).catch((error) => {
         console.log("@getUserInfo: ", error.message)
       })
@@ -65,7 +63,10 @@ export default function App() {
     return (
       <AppLoading 
         startAsync={startAsync}
-        onFinish={() => setIsReady(true)}
+        onFinish={() => {
+          SplashScreen.hide()
+          setIsReady(true)}
+        }
         onError={console.warn}
       />
     )

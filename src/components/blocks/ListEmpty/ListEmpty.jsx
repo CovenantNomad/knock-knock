@@ -1,10 +1,8 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } from '../../../theme/theme';
-import Button from '../../atoms/Button/Button';
 
-const ListEmpty = ({ navigation }) => {
-  const onPress = () => navigation.navigate('add')
+const ListEmpty = ({ content }) => {
 
   return (
     <View style={styles.container}>
@@ -12,7 +10,7 @@ const ListEmpty = ({ navigation }) => {
         source={require('../../../../assets/images/counting_stars.png')} 
         style={styles.image}
       />
-      <Text style={styles.content}>오늘은 작성된 루틴이 없어요</Text>
+      <Text style={styles.content}>{content}</Text>
     </View>
   );
 }

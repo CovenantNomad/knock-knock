@@ -13,8 +13,15 @@ export const createRoutine = async (newRoutine) => {
   })
 }
 
-export const findAllRoutine = async (uid) => {
-  const routineRef = firestore().collection('users').doc(uid).collection('routines')
+export const findAllRoutine = async ({ uid, filter }) => {
+  let routineRef
+  if (filter === 'isActive') {
+    routineRef = firestore().collection('users').doc(uid).collection('routines').where("isActive", "==", true )
+  } else if (filter === 'isNotActive') {
+    routineRef = firestore().collection('users').doc(uid).collection('routines').where("isActive", "!=", true )
+  } else {
+    routineRef = firestore().collection('users').doc(uid).collection('routines')
+  }
   return await routineRef.get()
   .then((querySnapshot) => {
     temp = []

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { colorSelection } from '../../data/colorSelection';
-import routineStore from '../../store/routineStore';
+import createStore from '../../store/createStore';
 //components
 import MainContainer from '../../components/blocks/Containers/MainContainer';
 import Header from '../../components/blocks/Header/Header';
@@ -9,8 +9,8 @@ import SubmitButton from '../../components/atoms/Button/SubmitButton';
 import { fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } from '../../theme/theme';
 
 const ColorScreen = ({ navigation }) => {
-  const color = routineStore(state => state.selectColor)
-  const setColor = routineStore(state => state.setSelectColor)
+  const color = createStore(state => state.selectColor)
+  const setColor = createStore(state => state.setSelectColor)
 
   const renderColors = ({ item }) => {
     return (
@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: widthPercentage(spaces.m),
     paddingTop: heightPercentage(spaces.m),
     marginBottom: heightPercentage(spaces.xxs),
-    borderColor: '#EBF2FF',
-    borderWidth: 1,
+    borderTopColor: '#EBF2FF',
+    borderTopWidth: 1,
     borderStyle: 'solid',
     paddingHorizontal: widthPercentage(16),
     height: '100%',

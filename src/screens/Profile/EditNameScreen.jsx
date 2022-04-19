@@ -10,6 +10,7 @@ import { colors, fontPercentage, fontSize, heightPercentage, spaces, widthPercen
 import { useMutation } from 'react-query';
 import { updateName } from '../../api/auth';
 import userStore from '../../store/store';
+import Section from '../../components/atoms/Section/Section';
 
 const EditNameScreen = ({ navigation, route }) => {
   const user = userStore(state => state.currentUser)
@@ -46,7 +47,7 @@ const EditNameScreen = ({ navigation, route }) => {
     <MainContainer>
       <Header navigation={navigation} hasBackButton={true} goBack={true} title={"이름 수정"} />
       <View style={styles.container}>
-        <View style={styles.section}>
+        <Section>
           <Text style={styles.menu}>이름</Text>
             <View style={styles.textinputWrapper}>
             <Controller 
@@ -76,23 +77,16 @@ const EditNameScreen = ({ navigation, route }) => {
             <AuthButton label="수정하기" onPress={handleSubmit(onSubmit)} loading={isSubmitting} />
           </View>
           <SimpleModal show={showModal} setShow={setShowModal} message={modalMessage} />
-        </View>
+        </Section>
       </View>
     </MainContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
-  section: {
-    backgroundColor: '#ffffff',
-    width: '100%',
-    paddingHorizontal: widthPercentage(spaces.m),
-    paddingVertical: heightPercentage(spaces.m),
-    marginBottom: heightPercentage(spaces.xxs),
-    borderColor: '#EBF2FF',
-    borderWidth: 1,
-    borderStyle: 'solid',
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
   },
   menu: {
     fontSize: fontPercentage(fontSize.medium),

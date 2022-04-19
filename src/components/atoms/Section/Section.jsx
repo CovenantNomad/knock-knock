@@ -17,9 +17,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: widthPercentage(spaces.m),
     paddingVertical: heightPercentage(spaces.m),
     marginBottom: heightPercentage(spaces.xxs),
-    borderColor: '#EBF2FF',
-    borderWidth: 1,
-    borderStyle: 'solid',
   },
 });
 

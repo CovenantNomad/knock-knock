@@ -14,14 +14,14 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: heightPercentage(spaces.xl),
+    paddingVertical: heightPercentage(spaces.l),
     borderRadius: 12,
     backgroundColor: colors.black
   },
   label: {
     color: colors.white,
     fontSize: fontPercentage(fontSize.large),
-    fontWeight: '800',
+    fontWeight: '600',
     lineHeight: fontPercentage(fontSize.large),
   },
 });

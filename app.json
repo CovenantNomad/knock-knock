@@ -18,11 +18,6 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "plugins": [
-      "@react-native-firebase/app",
-      "@react-native-firebase/perf",
-      "@react-native-firebase/crashlytics"
     ]
   },
   "name": "knock-knock"

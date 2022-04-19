@@ -1,12 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const RoutineEditorScreen = ({ route }) => {
-  const oldRoutine = route.params
-  
+const WeeklyScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>{oldRoutine.title}</Text>
+      <Text>WeeklyScreen</Text>
     </View>
   );
 }
@@ -20,4 +18,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RoutineEditorScreen;
+export default WeeklyScreen;

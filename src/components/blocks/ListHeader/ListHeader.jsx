@@ -30,10 +30,6 @@ const ListHeader = ({ calendarRef, date, setDate, percentage, totalCount, comple
       <View style={styles.dashboardContainer}>
         <DashBoard percentage={percentage} totalCount={totalCount} completedCount={completedCount} today={date} />
       </View>
-      <View style={styles.section}>
-        <Text style={styles.menu}>오늘의 영적루틴</Text>
-      </View>
-      
     </>
   );
 }
@@ -42,16 +38,6 @@ const styles = StyleSheet.create({
   dashboardContainer: {
     marginTop: heightPercentage(spaces.s),
     marginBottom: heightPercentage(spaces.s),
-    paddingHorizontal: widthPercentage(spaces.m),
-  },
-  section: {
-    backgroundColor: '#fff',
-    paddingTop: heightPercentage(spaces.s),
-  },
-  menu: {
-    fontSize: fontPercentage(fontSize.large),
-    fontWeight: '700',
-    marginBottom: heightPercentage(spaces.m),
     paddingHorizontal: widthPercentage(spaces.m),
   },
 });

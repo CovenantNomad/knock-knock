@@ -2,13 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { colors, fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } from '../../../theme/theme';
 
-const Button = ({ onPress, label, isLeft, isTop, isSelect }) => {
+const Button = ({ onPress, label, isLeft, isRight, isTop, isSelect }) => {
   return (
     <TouchableOpacity style={[
         styles.button, 
         {
           marginRight: isLeft && widthPercentage(spaces.xxs),
-          marginLeft: !isLeft && widthPercentage(spaces.xxs),
+          marginLeft: isRight && widthPercentage(spaces.xxs),
           marginBottom: isTop && heightPercentage(spaces.s),
           backgroundColor: isSelect ? colors.button : colors.white
         }

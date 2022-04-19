@@ -30,8 +30,6 @@ const styles = StyleSheet.create({
     minHeight: heightPercentage(60),
     paddingHorizontal: widthPercentage(16),
     backgroundColor: '#FFF',
-    borderBottomColor: colors.hero_border_color,
-    borderBottomWidth: 1
   },
   title: {
     fontSize: fontPercentage(fontSize.title),

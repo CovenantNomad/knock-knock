@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { icons } from '../../data/iconSelection';
-import routineStore from '../../store/routineStore';
+import createStore from '../../store/createStore';
 // components
 import MainContainer from '../../components/blocks/Containers/MainContainer';
 import Header from '../../components/blocks/Header/Header';
@@ -10,9 +10,9 @@ import SubmitButton from '../../components/atoms/Button/SubmitButton';
 import { fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } from '../../theme/theme';
 
 const IconScreen = ({ navigation }) => {
-  const selectIcon = routineStore(state => state.selectIcon)
-  const setSelectIcon = routineStore(state => state.setSelectIcon)
-  const selectColor = routineStore(state => state.selectColor)
+  const selectIcon = createStore(state => state.selectIcon)
+  const setSelectIcon = createStore(state => state.setSelectIcon)
+  const selectColor = createStore(state => state.selectColor)
 
   const renderIcons = ({ item }) => {
     return (
@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: widthPercentage(spaces.m),
     paddingTop: heightPercentage(spaces.m),
     marginBottom: heightPercentage(spaces.xxs),
-    borderColor: '#EBF2FF',
-    borderWidth: 1,
+    borderTopColor: '#EBF2FF',
+    borderTopWidth: 1,
     borderStyle: 'solid',
     paddingHorizontal: widthPercentage(16),
     height: '100%',

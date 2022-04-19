@@ -8,6 +8,7 @@ import MainContainer from '../../components/blocks/Containers/MainContainer';
 import Header from '../../components/blocks/Header/Header';
 import AuthButton from '../../components/atoms/Button/AuthButton';
 import SimpleModal from '../../components/blocks/Modal/SimpleModal';
+import Section from '../../components/atoms/Section/Section';
 
 const EditPasswordScreen = ({ navigation }) => {
   const user = userStore(state => state.currentUser)
@@ -28,7 +29,7 @@ const EditPasswordScreen = ({ navigation }) => {
   return (
     <MainContainer>
       <Header hasBackButton={true} navigation={navigation} goBack={true} title={"비밀번호변경"} />
-      <View style={styles.section}>
+      <Section>
         <Text style={styles.menu}>기존 비밀번호</Text>
         <View style={styles.textinputWrapper}>
           <Controller 
@@ -124,22 +125,12 @@ const EditPasswordScreen = ({ navigation }) => {
           <AuthButton label="수정하기" onPress={handleSubmit(onSubmit)} loading={isSubmitting} />
         </View>
         <SimpleModal show={showModal} setShow={setShowModal} message={modalMessage} />
-      </View>
+      </Section>
     </MainContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  section: {
-    backgroundColor: '#ffffff',
-    width: '100%',
-    paddingHorizontal: widthPercentage(spaces.m),
-    paddingVertical: heightPercentage(spaces.m),
-    marginBottom: heightPercentage(spaces.xxs),
-    borderColor: '#EBF2FF',
-    borderWidth: 1,
-    borderStyle: 'solid',
-  },
   menu: {
     fontSize: fontPercentage(fontSize.medium),
     fontWeight: '500',

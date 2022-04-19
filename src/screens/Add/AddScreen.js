@@ -6,7 +6,7 @@ import { QueryClient, useMutation, useQueryClient } from 'react-query';
 import { createRoutine } from '../../api/routines'
 // hook & state
 import userStore from '../../store/store';
-import routineStore from '../../store/routineStore';
+import createStore from '../../store/createStore';
 import useSelectWeekday from '../../hooks/useSelectWeekday';
 // components
 import MainContainer from '../../components/blocks/Containers/MainContainer';
@@ -20,6 +20,7 @@ import RoutineRepeat from '../../components/blocks/RoutineRepeat/RoutineRepeat';
 import RoutineTime from '../../components/blocks/RoutineTime/RoutineTime';
 import RoutineListItem from '../../components/blocks/RoutineListItem/RoutineListItem';
 import RoutineGoal from '../../components/blocks/RoutineGoal/RoutineGoal';
+import Section from '../../components/atoms/Section/Section';
 
 const AddScreen = ({ navigation }) => {
   const user = userStore(state => state.currentUser)
@@ -30,10 +31,10 @@ const AddScreen = ({ navigation }) => {
   const [ goal, setGoal ] = useState("")
   const [ weekdays, onToggleWeekday ] = useSelectWeekday()
   const [ date, setDate ] = useState(new Date())
-  const color = routineStore(state => state.selectColor)
-  const setSelectColor = routineStore(state => state.setSelectColor)
-  const icon = routineStore(state => state.selectIcon)
-  const setSelectIcon = routineStore(state => state.setSelectIcon)
+  const color = createStore(state => state.selectColor)
+  const setSelectColor = createStore(state => state.setSelectColor)
+  const icon = createStore(state => state.selectIcon)
+  const setSelectIcon = createStore(state => state.setSelectIcon)
   const [ showModal, setShowModal ] = useState(false)
   const [ modalMessage, setModalMessage ] = useState("")
   
@@ -97,7 +98,7 @@ const AddScreen = ({ navigation }) => {
           source={require('../../../assets/images/prayforukraine.jpeg')}
           content={`우크라이나를 위해 \n기도합니다`}
         />
-        <View style={styles.section}>
+        <Section>
           <Text style={styles.menu}>루틴이름</Text>
           <View style={styles.textinputWrapper}>
             <TextInput 
@@ -109,21 +110,21 @@ const AddScreen = ({ navigation }) => {
             />
           </View>
           <RoutineProps state={isTodo} setState={setIsTodo} />
-        </View>
-        <View style={styles.section}>
+        </Section>
+        <Section>
           <RoutineRepeat isTemporary={isTemporary} setIsTemporary={setIsTemporary} weekdays={weekdays} onToggleFunc={onToggleWeekday} />
           {isTodo && <RoutineTime date={date} setDate={setDate} />}
-        </View>
+        </Section>
         {isTodo && (
-          <View style={styles.section}>
+          <Section>
             <RoutineGoal isTimeGoal={isTimeGoal} setIsTimeGoal={setIsTimeGoal} goal={goal} setGoal={setGoal} />
-          </View>
+          </Section>
         )}
-        <View style={styles.section}>
+        <Section>
           <RoutineListItem title={'색상 선택'} onPress={() => navigation.navigate('selectColor')} />
           <Divider />
           <RoutineListItem title={'아이콘 선택'} onPress={() => navigation.navigate('selectIcon')} />
-        </View>
+        </Section>
         <SubmitButton onPress={onSubmit} label={"만들기"}/>  
       </ScrollView>
       <SimpleModal show={showModal} setShow={setShowModal} message={modalMessage} />
@@ -133,16 +134,6 @@ const AddScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {},
-  section: {
-    backgroundColor: '#ffffff',
-    width: '100%',
-    paddingHorizontal: widthPercentage(spaces.m),
-    paddingVertical: heightPercentage(spaces.m),
-    marginBottom: heightPercentage(spaces.xxs),
-    borderColor: '#EBF2FF',
-    borderWidth: 1,
-    borderStyle: 'solid',
-  },
   menu: {
     fontSize: fontPercentage(fontSize.medium),
     fontWeight: '500',
