@@ -6,6 +6,8 @@ import WithdrawalScreen from '../screens/Profile/WithdrawalScreen';
 import RoutineScreen from '../screens/Profile/RoutineScreen';
 import RoutineEditorScreen from '../screens/Profile/RoutineEditorScreen';
 import ResetPasswordScreen from '../screens/Profile/ResetPasswordScreen';
+import EditColorScreen from '../screens/Profile/EditColorScreen';
+import EditIconScreen from '../screens/Profile/EditIconScreen';
 
 const ProfileStack = createNativeStackNavigator()
 
@@ -16,7 +18,9 @@ const ProfileNavigator = () => {
       <ProfileStack.Screen name="editName" component={EditNameScreen} />
       <ProfileStack.Screen name="editPassword" component={ResetPasswordScreen} />
       <ProfileStack.Screen name="withdrawal" component={WithdrawalScreen} />
-      <ProfileStack.Screen name="routines" component={RoutineScreen} />
+      <ProfileStack.Screen name="myRoutines" component={RoutineScreen} />
+      <ProfileStack.Screen name="updateColor" component={EditColorScreen} />
+      <ProfileStack.Screen name="updateIcon" component={EditIconScreen} />
       <ProfileStack.Screen name="editRoutine" component={RoutineEditorScreen} />
     </ProfileStack.Navigator>
   );

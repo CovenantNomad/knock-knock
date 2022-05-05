@@ -7,10 +7,11 @@ import MainContainer from '../../components/blocks/Containers/MainContainer';
 import Header from '../../components/blocks/Header/Header';
 import SubmitButton from '../../components/atoms/Button/SubmitButton';
 import { fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } from '../../theme/theme';
+import updateStore from '../../store/updateStore';
 
-const ColorScreen = ({ navigation }) => {
-  const color = createStore(state => state.selectColor)
-  const setColor = createStore(state => state.setSelectColor)
+const EditColorScreen = ({ navigation }) => {
+  const color = updateStore(state => state.updateColor)
+  const setColor = updateStore(state => state.setUpdateColor)
 
   const renderColors = ({ item }) => {
     return (
@@ -24,7 +25,7 @@ const ColorScreen = ({ navigation }) => {
 
   return (
     <MainContainer>
-      <Header hasBackButton={true} title={"색상 선택"} navigation={navigation} route={'createRoutine'}/>
+      <Header hasBackButton={true} title={"색상 선택"} navigation={navigation} route={'editRoutine'}/>
       <View style={styles.body}>
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: heightPercentage(spaces.m) }}>
           <Text style={{ flex: 1, fontSize: fontPercentage(fontSize.menu), fontWeight: '400' }}>선택한 색상</Text>
@@ -67,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ColorScreen;
+export default EditColorScreen;

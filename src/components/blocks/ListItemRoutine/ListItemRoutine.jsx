@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: heightPercentage(spaces.xxs),
     borderBottomWidth: 1,
-    borderBottomColor: colors.gray300,
+    borderBottomColor: colors.gray300, 
   },
   content: {
     flex: 1,

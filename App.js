@@ -29,6 +29,7 @@ export default function App() {
 
   const startAsync = async () => {
     console.log("앱로딩 실행중")
+    // SplashScreen.show()
     const token = await AsyncStorage.getItem("authentication");
     
     if (token) {

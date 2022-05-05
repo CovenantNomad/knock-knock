@@ -6,13 +6,18 @@
     "orientation": "portrait",
     "android": {
       "package": "com.knockknock",
-      "googleServicesFile": "./android/app/google-services.json"
-      
+      "googleServicesFile": "./android/app/google-services.json",
+      "splash": {
+        "image": "./assets/images/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#fff"
+      }
     },
     "ios": {
       "splash": {
         "image": "./assets/images/splash.png",
-        "resizeMode": "cover"
+        "resizeMode": "contain",
+        "backgroundColor": "#fff"
       },
       "googleServicesFile": "./ios/knockknock/GoogleService-Info.plist"
     },

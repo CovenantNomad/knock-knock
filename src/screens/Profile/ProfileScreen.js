@@ -47,7 +47,7 @@ const ProfileScreen = ({ navigation }) => {
           </Section>
           <Section>
             <Text style={styles.menu}>영적루틴관리</Text>
-            <ListItemSetting navigation={navigation} dest={'routines'} title={'나의 영적루틴'} hasContent={false} />
+            <ListItemSetting navigation={navigation} dest={'myRoutines'} title={'나의 영적루틴'} hasContent={false} />
           </Section>
         </View>
         <SubmitButton onPress={onLogout} label={"로그아웃"}/>

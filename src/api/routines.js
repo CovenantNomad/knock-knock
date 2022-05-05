@@ -34,3 +34,21 @@ export const findAllRoutine = async ({ uid, filter }) => {
     return temp
   })
 }
+
+export const updateRoutine = (userId, routineId, data) => {
+  const routineRef = firestore().collection('users').doc(userId).collection('routines').doc(routineId)
+  routineRef.update(data).then(() => {
+    console.log("Document successfully updated!");
+  }).catch(() => {
+    console.log("Error updating document: ", error)
+  })
+}
+
+export const deleteRoutine = (userId, routineId) => {
+  const routineRef = firestore().collection('users').doc(userId).collection('routines').doc(routineId)
+  routineRef.delete().then(() => {
+    console.log("Document successfully deleted!");
+  }).catch((error) => {
+      console.error("Error removing document: ", error);
+  });
+}

@@ -47,7 +47,7 @@ const useSelectWeekday = () => {
     )
   }
 
-  return [weekdays, onToggleSelected]
+  return [weekdays, setWeekdays, onToggleSelected]
 }
 
 export default useSelectWeekday;

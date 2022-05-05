@@ -121,9 +121,9 @@ const AddScreen = ({ navigation }) => {
           </Section>
         )}
         <Section>
-          <RoutineListItem title={'색상 선택'} onPress={() => navigation.navigate('selectColor')} />
+          <RoutineListItem title={'색상 선택'} onPress={() => navigation.navigate('selectColor')}/>
           <Divider />
-          <RoutineListItem title={'아이콘 선택'} onPress={() => navigation.navigate('selectIcon')} />
+          <RoutineListItem title={'아이콘 선택'} onPress={() => navigation.navigate('selectIcon')}/>
         </Section>
         <SubmitButton onPress={onSubmit} label={"만들기"}/>  
       </ScrollView>

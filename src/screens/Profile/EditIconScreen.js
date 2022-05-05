@@ -2,17 +2,17 @@ import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { icons } from '../../data/iconSelection';
-import createStore from '../../store/createStore';
+import updateStore from '../../store/updateStore';
 // components
 import MainContainer from '../../components/blocks/Containers/MainContainer';
 import Header from '../../components/blocks/Header/Header';
 import SubmitButton from '../../components/atoms/Button/SubmitButton';
 import { fontPercentage, fontSize, heightPercentage, spaces, widthPercentage } from '../../theme/theme';
 
-const IconScreen = ({ navigation, dest }) => {
-  const selectIcon = createStore(state => state.selectIcon)
-  const setSelectIcon = createStore(state => state.setSelectIcon)
-  const selectColor = createStore(state => state.selectColor)
+const EditIconScreen = ({ navigation, dest }) => {
+  const selectIcon = updateStore(state => state.updateIcon)
+  const setSelectIcon = updateStore(state => state.setUpdateIcon)
+  const selectColor = updateStore(state => state.updateColor)
 
   const renderIcons = ({ item }) => {
     return (
@@ -28,7 +28,7 @@ const IconScreen = ({ navigation, dest }) => {
 
   return (
     <MainContainer>
-      <Header hasBackButton={true} title={"아이콘 선택"} navigation={navigation} route={'createRoutine'}/>
+      <Header hasBackButton={true} title={"아이콘 선택"} navigation={navigation} route={'editRoutine'}/>
       <View style={styles.body}>
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: heightPercentage(spaces.xl)}}>
           <Text style={{ flex: 1, fontSize: fontPercentage(fontSize.menu), fontWeight: '400' }}>선택한 아이콘</Text>
@@ -88,4 +88,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default IconScreen;
+export default EditIconScreen;
