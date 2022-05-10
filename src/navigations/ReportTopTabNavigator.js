@@ -15,7 +15,7 @@ const ReportTopTabNavigator = () => {
       tabBarItemStyle: { width: Dimensions.get('screen').width / 2 },
       tabBarIndicatorStyle: { backgroundColor: '#000'}
     }}>
-      {/* <Tab.Screen name="monthlyRecords" component={MonthlyScreen} options={{ tabBarLabel: '이달의 기록' }}/> */}
+      <Tab.Screen name="monthlyRecords" component={MonthlyScreen} options={{ tabBarLabel: '이달의 기록' }}/>
       <Tab.Screen name="weeklyRecords" component={WeeklyScreen} options={{ tabBarLabel: '루틴별 기록' }}/>
     </Tab.Navigator>
   );

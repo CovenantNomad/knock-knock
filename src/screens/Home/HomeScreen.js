@@ -67,7 +67,7 @@ const HomeScreen = ({ navigation }) => {
   } 
 
   const onToggleCompleted = (uid, docId, isCompleted) => {
-    completedMutation.mutate({ uid, docId, isCompleted })
+    completedMutation.mutate({uid, docId, isCompleted})
   }
 
   const [ percentage, completedCount ] = useCount(routines)

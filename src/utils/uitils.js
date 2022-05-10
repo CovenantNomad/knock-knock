@@ -1,7 +1,8 @@
 import * as MediaLibrary from 'expo-media-library';
 
-
 export const emailRegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+
 
 export const getBlob = async (uri) => {
   return await new Promise((resolve, reject) => {
@@ -31,29 +32,30 @@ export const getpermissions = async () => {
   }
 }
 
+// date Format 생성
 export function getDate(date) {
   return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
 }
-
+// 한글 월/일 Format 생성
 export function converStrDate(dateFormat) {
   dateFormat.split("-")
   return `${dateFormat.split("-")[1]}월 ${dateFormat.split("-")[2]}일`
 }
-
+// 오전/오후 변경
 export function convertAmPm(hour) {
   return hour >= 12 ? '오후' : '오전'
 }
-
+// 24시간 -> 12시간으로 변경
 export function convert12hour(hour) {
   return hour >= 12 ? hour-12 : hour
 }
-
+// 월화수목...일 변경
 export function convertDay(date) {
   const days = ['일', '월', '화', '수', '목', '금', '토']
 
   return days[date]
 }
-
+// 월요일 날짜 구하기
 export function getMondayDate(d) {
   var paramDate = new Date(d);
 
@@ -63,7 +65,7 @@ export function getMondayDate(d) {
   paramDate.setUTCHours(0,0,0,0);
   return new Date(paramDate);
 }
-
+// 지일 날짜 구하기
 export function getSundayDate(d) {
   var paramDate = new Date(d);
 
@@ -73,7 +75,7 @@ export function getSundayDate(d) {
   paramDate.setUTCHours(23,59,59,999);
   return new Date(paramDate);
 }
-
+// 해당 월에 몇 주차인지 구하기(목요일 기준)
 export function weekNumberByMonth(inputDate) {
   // const inputDate = new Date(dateFormat);
  
@@ -138,15 +140,112 @@ export function weekNumberByMonth(inputDate) {
  
   return { year, month, weekNo };
 }
-
-export const seperateWeekly = ( weekNo, monthlyList, setList ) => {
+// 월 데이터 -> 주간 데이터로 나누기
+export const seperateWeekly = ( weekNo, monthlyList ) => {
   let temp = []
-  for (weekNo; weekNo > 0; weekNo--) {
-    let tempList = monthlyList?.filter(item => item.weekNo === weekNo)
-    temp.push({
-      id: weekNo,
-      data: tempList
-    })
+  
+  try {
+    for (weekNo; weekNo > 0; weekNo--) {
+      let tempList = monthlyList.filter(item => item.weekNo === weekNo)
+      temp.push({
+        id: weekNo,
+        data: tempList
+      })
+    }
+    return {
+      result: true,
+      payload: temp
+    }
+  } catch (error) {
+    console.log("@seperateWeekly: ", error)
+    return {
+      result: false,
+      error
+    }
   }
-  setList(temp)
+}
+// 차트 생성에 필요한 데이터 포맷으로 만들기
+export const makeChartData = (weekNo, data, setHasError, setRecords, setIsUpdating) => {
+
+  try {
+    const { result, payload, error } = seperateWeekly(weekNo, data)
+  
+    if (result) {
+      const tempList = []
+
+      for (const weeklyList of payload) {
+        const weeklyTemp = [
+          {
+            day: 0,
+            score: 0,
+            total: 0,
+            completed: 0,
+            weekNo: 0,
+          },
+          {
+            day: 1,
+            score: 0,
+            total: 0,
+            completed: 0,
+            weekNo: 0,
+          },
+          {
+            day: 2,
+            score: 0,
+            total: 0,
+            completed: 0,
+            weekNo: 0,
+          },
+          {
+            day: 3,
+            score: 0,
+            total: 0,
+            completed: 0,
+            weekNo: 0,
+          },
+          {
+            day: 4,
+            score: 0,
+            total: 0,
+            completed: 0,
+            weekNo: 0,
+          },
+          {
+            day: 5,
+            score: 0,
+            total: 0,
+            completed: 0,
+            weekNo: 0,
+          },
+          {
+            day: 6,
+            score: 0,
+            total: 0,
+            completed: 0,
+            weekNo: 0,
+          },
+        ]
+        weeklyList.data.forEach(item => {weeklyTemp.forEach((item2) => {
+          if (item.day === item2.day) {
+            item2.score = item.score,
+            item2.total = item.total,
+            item2.completed = item.completed
+            item2.weekNo = item.weekNo
+          }
+        })})
+        tempList.push(weeklyTemp)
+      }
+      setRecords(tempList)
+      setIsUpdating(false)
+    } else {
+      console.log(error)
+      setHasError(true)
+      setIsUpdating(false)
+    }
+
+  } catch (error) {
+    console.log(error)
+    setHasError(true)
+    setIsUpdating(false)
+  }
 }

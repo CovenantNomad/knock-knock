@@ -38,8 +38,8 @@ export const updateScore = async ({ uid, date, score, total, completed }) => {
   })
 }
 
-export const fetchScore = async ({ uid, month }) => {
-  const scoreRef = firestore().collection('users').doc(uid).collection('scores').where("month", "==", month)
+export const fetchScore = async ({uid, year, month}) => {
+  const scoreRef = firestore().collection('users').doc(uid).collection('scores').where("month", "==", month).where("year", "==", year)
   return await scoreRef.get()
   .then((querySnapshot) => {
     temp = []

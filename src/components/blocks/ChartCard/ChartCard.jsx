@@ -6,15 +6,18 @@ import ChartHeader from './SubComponents/ChartHeader';
 
 const ChartCard = ({ data, year }) => {
 
-  const monday = data?.find(item => item.day === 1) 
-  const sunday = data?.find(item => item.day === 0)
+  console.log(data)
 
-  console.log(sunday)
+  // const monday = data?.find(item => item.day === 1) 
+  // const sunday = data?.find(item => item.day === 0)
+
+  // console.log(sunday)
 
   return (
     <View style={styles.container}>
       {/* <ChartHeader year={year} first={monday} end={sunday}/> */}
-      <Chart data={data} />
+      {/* <Chart data={data} /> */}
+      <Text>여기로딩 중</Text>
     </View>
   );
 }

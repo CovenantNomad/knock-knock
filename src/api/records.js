@@ -3,7 +3,7 @@ import { getDate } from '../utils/uitils';
 
 export const createRecord = async ({ uid, date }) => {
   const recordRef = firestore().collection('users').doc(uid).collection('records')
-  return await firestore().collection('users').doc(uid).collection('routines').where("weekday", "array-contains", date.getDay()).get()
+  return await firestore().collection('users').doc(uid).collection('routines').where("weekday", "array-contains", date.getDay()).where("isActive", "==", true).get()
   .then((querySanpshot) => {
     querySanpshot.forEach((doc) => {
       recordRef.where("routineId", "==", doc.id).where("date", "==", getDate(date)).get()
