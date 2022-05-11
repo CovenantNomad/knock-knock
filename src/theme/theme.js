@@ -35,6 +35,7 @@ export const fontSize = {
 }
 
 export const spaces = {
+  xxxl: 40,
   xxl: 30,
   xl: 24,
   l: 20,

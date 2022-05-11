@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import SkeletonContent from 'react-native-skeleton-content';
 // state & uitils
 import userStore from '../../store/store';
-import { makeChartData, seperateWeekly, weekNumberByMonth } from '../../utils/uitils';
+import { makeChartData, weekNumberByMonth } from '../../utils/uitils';
 // api
 import { fetchScore } from '../../api/score';
 import { useQuery } from 'react-query';
@@ -12,7 +12,6 @@ import Section from '../../components/atoms/Section/Section';
 import ChartCard from '../../components/blocks/ChartCard/ChartCard';
 import { fontPercentage, fontSize, heightPercentage, spaces, colors } from '../../theme/theme';
 import ListEmpty from '../../components/blocks/ListEmpty/ListEmpty';
-import useChartData from '../../hooks/useChartData';
 import ErrorFullScreen from '../../components/atoms/Errors/ErrorFullScreen';
 
 
@@ -61,15 +60,15 @@ const MonthlyScreen = () => {
           // <ErrorFullScreen />
           <Text>오류상태...</Text>
         ) : (
-          // <FlatList 
-          //   data={records?.sort((a, b) => b.id - a.id)}
-          //   renderItem={({ item, index }) => (
-          //     <ChartCard data={item} year={year} key={index} />
-          //   )}
-          //   ListEmptyComponent={() => <ListEmpty content={"작성된 기록이 없습니다"} />}
-          //   keyExtractor={item => item.id}
-          // />
-          <Text>데이터상태</Text>
+          <FlatList 
+            data={records?.sort((a, b) => b.weekNo - a.weekNo)}
+            renderItem={({ item, index }) => (
+              <ChartCard data={item} year={year} key={index} />
+            )}
+            ListEmptyComponent={() => <ListEmpty content={"작성된 기록이 없습니다"} />}
+            keyExtractor={item => item.weekNo}
+            contentContainerStyle={{ flexGrow: 1, paddingBottom: heightPercentage(spaces.xxxl) }}
+          />
         )
       )}
     </Section>

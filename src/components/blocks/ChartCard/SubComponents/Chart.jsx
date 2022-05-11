@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
+import { LineSegment, VictoryAxis, VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
 import { colors, fontPercentage, fontSize } from '../../../../theme/theme';
 
 const Chart = ({ data }) => {
@@ -10,7 +10,7 @@ const Chart = ({ data }) => {
       width={350} 
       height={200}
       theme={VictoryTheme.material} 
-      domain={{x: [0, 6], y: [0, 100]}}
+      domain={{x: [1, 7], y: [0, 100]}}
     >
       <VictoryAxis 
         crossAxis
@@ -19,11 +19,11 @@ const Chart = ({ data }) => {
           axis: { stroke: "transparent" },
           tickLabels: { fontSize: fontPercentage(fontSize.medium), fill: colors.gray300 }
         }}
-        tickValues={[0, 1, 2, 3, 4, 5, 6]} 
-        tickFormat={["일", "월", "화", "수", "목", "금", "토"]}
+        tickValues={[1, 2, 3, 4, 5, 6, 7]} 
+        tickFormat={["월", "화", "수", "목", "금", "토", "일"]}
       />
       <VictoryBar 
-        data={data} x="day" y="score" 
+        data={data} x="fixedDay" y="score" 
         labels={({ datum }) => `${datum.score}%`}
         style={{
           labels: { fill: "white", fontSize: fontPercentage(fontSize.small), fontWeight:'700' },
@@ -34,14 +34,5 @@ const Chart = ({ data }) => {
     </VictoryChart>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default Chart;

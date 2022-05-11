@@ -34,12 +34,11 @@ export const getpermissions = async () => {
 
 // date Format 생성
 export function getDate(date) {
-  return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+  return `${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2, 0)}-${date.getDate().toString().padStart(2, 0)}`
 }
 // 한글 월/일 Format 생성
 export function converStrDate(dateFormat) {
-  dateFormat.split("-")
-  return `${dateFormat.split("-")[1]}월 ${dateFormat.split("-")[2]}일`
+  return `${dateFormat.getMonth()+1}월 ${dateFormat.getDate()}일`
 }
 // 오전/오후 변경
 export function convertAmPm(hour) {
@@ -65,14 +64,14 @@ export function getMondayDate(d) {
   paramDate.setUTCHours(0,0,0,0);
   return new Date(paramDate);
 }
-// 지일 날짜 구하기
+// 일요일 날짜 구하기
 export function getSundayDate(d) {
   var paramDate = new Date(d);
 
   var day = paramDate.getDay();
   var diff = paramDate.getDate() - day + (day == 0 ? 0 : 7);
   paramDate.setDate(diff);
-  paramDate.setUTCHours(23,59,59,999);
+  paramDate.setUTCHours(0,0,0,0);
   return new Date(paramDate);
 }
 // 해당 월에 몇 주차인지 구하기(목요일 기준)
@@ -148,7 +147,7 @@ export const seperateWeekly = ( weekNo, monthlyList ) => {
     for (weekNo; weekNo > 0; weekNo--) {
       let tempList = monthlyList.filter(item => item.weekNo === weekNo)
       temp.push({
-        id: weekNo,
+        weekNo: weekNo,
         data: tempList
       })
     }
@@ -174,55 +173,56 @@ export const makeChartData = (weekNo, data, setHasError, setRecords, setIsUpdati
       const tempList = []
 
       for (const weeklyList of payload) {
+        console.log()
         const weeklyTemp = [
           {
             day: 0,
+            fixedDay: 7,
             score: 0,
             total: 0,
             completed: 0,
-            weekNo: 0,
           },
           {
             day: 1,
+            fixedDay: 1,
             score: 0,
             total: 0,
             completed: 0,
-            weekNo: 0,
           },
           {
             day: 2,
+            fixedDay: 2,
             score: 0,
             total: 0,
             completed: 0,
-            weekNo: 0,
           },
           {
             day: 3,
+            fixedDay: 3,
             score: 0,
             total: 0,
             completed: 0,
-            weekNo: 0,
           },
           {
             day: 4,
+            fixedDay: 4,
             score: 0,
             total: 0,
             completed: 0,
-            weekNo: 0,
           },
           {
             day: 5,
+            fixedDay: 5,
             score: 0,
             total: 0,
             completed: 0,
-            weekNo: 0,
           },
           {
             day: 6,
+            fixedDay: 6,
             score: 0,
             total: 0,
             completed: 0,
-            weekNo: 0,
           },
         ]
         weeklyList.data.forEach(item => {weeklyTemp.forEach((item2) => {
@@ -230,10 +230,14 @@ export const makeChartData = (weekNo, data, setHasError, setRecords, setIsUpdati
             item2.score = item.score,
             item2.total = item.total,
             item2.completed = item.completed
-            item2.weekNo = item.weekNo
           }
         })})
-        tempList.push(weeklyTemp)
+        tempList.push({
+          weekNo: weeklyList.weekNo,
+          data: weeklyTemp,
+          sunday: getSundayDate(new Date(weeklyList.data[0].date)),
+          monday: getMondayDate(new Date(weeklyList.data[0].date))
+        })
       }
       setRecords(tempList)
       setIsUpdating(false)

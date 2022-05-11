@@ -7,7 +7,7 @@ const ChartHeader = ({year, first, end}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{converStrDate(first.date)} - {converStrDate(end.date)}</Text>
+      <Text style={styles.title}>{converStrDate(first)} - {converStrDate(end)}</Text>
       <Text style={styles.subtitle}>{year}</Text>
     </View>
   );

@@ -6,18 +6,10 @@ import ChartHeader from './SubComponents/ChartHeader';
 
 const ChartCard = ({ data, year }) => {
 
-  console.log(data)
-
-  // const monday = data?.find(item => item.day === 1) 
-  // const sunday = data?.find(item => item.day === 0)
-
-  // console.log(sunday)
-
   return (
     <View style={styles.container}>
-      {/* <ChartHeader year={year} first={monday} end={sunday}/> */}
-      {/* <Chart data={data} /> */}
-      <Text>여기로딩 중</Text>
+      <ChartHeader year={year} first={data.monday} end={data.sunday}/>
+      <Chart data={data.data} />
     </View>
   );
 }
@@ -26,7 +18,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.gray500,
     paddingHorizontal: widthPercentage(spaces.m),
-    paddingVertical: heightPercentage(spaces.m),
+    paddingVertical: heightPercentage(spaces.s),
+    marginBottom: heightPercentage(spaces.xxs),
     borderRadius: 12,
   },
 });
