@@ -68,6 +68,12 @@ const AddScreen = ({ navigation }) => {
       return
     }
 
+    if (weekday.length === 0 && isTemporary === false) {
+      setShowModal(true)
+      setModalMessage("반복할 요일을 선택해주세요")
+      return
+    }
+
     const submitData = {
       userId: user.uid,
       title,

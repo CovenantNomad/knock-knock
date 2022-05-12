@@ -22,9 +22,10 @@
 - [x] Score Chart 디자인 수정
 - [x] 주단위로 월별 통계 섹션 만들기 (고민하기)
 - [x] score 데이터 추가 -> month/week/completed/total
-- [ ] 주의 첫날과 끝날 계산하는 함수 만들기
-- [ ] Null Data 처리하기 (import!)
+- [x] 주의 첫날과 끝날 계산하는 함수 만들기
+- [x] Null Data 처리하기 (import!)
 - [x] Navigation Header 구현
+- [ ] Chart ClickHandler 만들고,
 - [ ] Routine별 실천결과 구현
 
 ## Profile Screen
@@ -34,8 +35,8 @@
 - [x] 비밀번호 변경하기
 - [ ] 회원탈퇴 적용안됨 - withdrawalPrimaryAction 수정 & 데이터 삭제
 - [x] Routine Screen (All | isActive | isNotActive)
-- [ ] Routine Items -> Editor Screen 이동
-- [ ] Routine Edit 하기
+- [x] Routine Items -> Editor Screen 이동
+- [x] Routine Edit 하기
 - [x] 내용량 보고 ScrollView -> View 변경고려
 
 ## Auth
@@ -46,6 +47,7 @@
 
 - [ ] SplashScreen & Icon 적용하기
 - [x] SplashScreen Hide 적용하기
+- [ ] 함수, 에러처리하기
 
 ## Test
 

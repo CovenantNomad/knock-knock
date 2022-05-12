@@ -17,7 +17,7 @@ const Chart = ({ data }) => {
         style={{ 
           grid: { stroke: "none" }, 
           axis: { stroke: "transparent" },
-          tickLabels: { fontSize: fontPercentage(fontSize.medium), fill: colors.gray300 }
+          tickLabels: { fontSize: fontPercentage(fontSize.medium), fill: colors.gray100 }
         }}
         tickValues={[1, 2, 3, 4, 5, 6, 7]} 
         tickFormat={["월", "화", "수", "목", "금", "토", "일"]}

@@ -24,14 +24,12 @@ const MonthlyScreen = () => {
 
   const { isLoading, isError, data } = useQuery(
     ['fetchScore', { uid: user.uid, month: month, year: year }], 
-    () => fetchScore({ uid: user.uid, month: month, year: year })
-  )
-  
-  useEffect(() => {
-    if (data) {
-      makeChartData(weekNo, data, setHasError, setRecords, setIsUpdating)
+    () => fetchScore({ uid: user.uid, month: month, year: year }), {
+      onSuccess: (data) => {
+        makeChartData(weekNo, data, setHasError, setRecords, setIsUpdating)
+      }
     }
-  }, [data])
+  )
 
   useEffect(() => {
     if (isLoading) {

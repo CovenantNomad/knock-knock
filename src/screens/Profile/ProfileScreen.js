@@ -32,6 +32,7 @@ const ProfileScreen = ({ navigation }) => {
       <Hero
           source={require('../../../assets/images/honestday.jpeg')}
           content={'하나님 나라를 세워가는\n정직한 하루'}
+          Link={"https://smartstore.naver.com/honestday"}
         />
       <View style={styles.container}>
         <View style={{ backgroundColor: colors.main_background_color}}>
