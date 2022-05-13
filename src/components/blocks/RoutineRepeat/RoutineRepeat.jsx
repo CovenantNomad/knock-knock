@@ -6,6 +6,7 @@ import { fontPercentage, fontSize, heightPercentage, widthPercentage, spaces, co
 import Weekdays from '../Weekdays/Weekdays';
 
 const RoutineRepeat = ({ isTemporary, setIsTemporary, weekdays, onToggleFunc }) => {
+
   return (
     <View>
       <Text style={styles.title}>반복 주기</Text>

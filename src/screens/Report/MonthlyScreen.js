@@ -27,7 +27,7 @@ const MonthlyScreen = () => {
     () => fetchScore({ uid: user.uid, month: month, year: year }), {
       onSuccess: (data) => {
         makeChartData(weekNo, data, setHasError, setRecords, setIsUpdating)
-      }
+      },
     }
   )
 

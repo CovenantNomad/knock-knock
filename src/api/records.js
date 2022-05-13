@@ -1,5 +1,5 @@
 import firestore from '@react-native-firebase/firestore';
-import { getDate } from '../utils/uitils';
+import { getDate, getMondayDate, getSundayDate } from '../utils/uitils';
 
 export const createRecord = async ({ uid, date }) => {
   const recordRef = firestore().collection('users').doc(uid).collection('records')
@@ -50,4 +50,18 @@ export const updateCount = async ({ uid, docId, count }) => {
 
 export const deleteRecordById = async ({ uid, docId }) => {
   return await firestore().collection('users').doc(uid).collection('records').doc(docId).delete()
+}
+
+export const fetchweeklyRecord = async ({ uid }) => {
+  return await firestore().collection('users').doc(uid).collection('records').where("date", ">=", getDate(getMondayDate(new Date()))).where("date", "<=", getDate(getSundayDate(new Date()))).get()
+  .then((querySnapshot) => {
+    let temp = []
+    querySnapshot.forEach((doc) => {
+      temp.push({
+        recordId: doc.id,
+        ...doc.data()
+      })
+    })
+    return temp
+  })
 }

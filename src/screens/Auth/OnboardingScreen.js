@@ -11,7 +11,7 @@ const OnboardingScreen = ({ navigation }) => {
   return (
     <AuthContainer>
       <View style={[ styles.titleGroup, { flex: 0.8 } ]}>
-        <Text style={styles.welcome}>Welcom to</Text>
+        <Text style={styles.welcome}>예수님의 노크</Text>
         <Text style={styles.title}>Knock Knock</Text>
         <Text style={styles.subtitle}>{`습관을 따라\n주님과 동행하는 시간`}</Text>
       </View>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   welcome: {
-    fontSize: fontPercentage(30),
+    fontSize: fontPercentage(24),
   },
   title: {
     textTransform: 'uppercase',

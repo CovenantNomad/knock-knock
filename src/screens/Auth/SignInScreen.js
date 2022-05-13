@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: heightPercentage(16),
-    paddingHorizontal: widthPercentage(10),
+    paddingHorizontal: widthPercentage(4),
     paddingVertical: heightPercentage(6),
     borderBottomColor: '#222',
     borderBottomWidth: 1,

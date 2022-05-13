@@ -8,14 +8,14 @@
       "package": "com.knockknock",
       "googleServicesFile": "./android/app/google-services.json",
       "splash": {
-        "image": "./assets/images/splash.png",
+        "image": "./assets/images/splash2.png",
         "resizeMode": "contain",
         "backgroundColor": "#fff"
       }
     },
     "ios": {
       "splash": {
-        "image": "./assets/images/splash.png",
+        "image": "./assets/images/splash2.png",
         "resizeMode": "contain",
         "backgroundColor": "#fff"
       },

@@ -15,16 +15,16 @@ const ListFooter = ({ onPress }) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: widthPercentage(spaces.m), 
-    backgroundColor: '#fff' ,
-    paddingBottom: heightPercentage(spaces.l),
+    marginTop: heightPercentage(spaces.xl),
+    backgroundColor: '#fff',
+    paddingBottom: heightPercentage(spaces.m),
   },
   button: {
     minHeight: heightPercentage(40),
     backgroundColor: colors.button,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: heightPercentage(spaces.m),
+    paddingVertical: heightPercentage(spaces.s),
     borderRadius: 8,
   },
   label: {

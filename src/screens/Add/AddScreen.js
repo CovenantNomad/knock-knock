@@ -7,7 +7,7 @@ import { createRoutine } from '../../api/routines'
 // hook & state
 import userStore from '../../store/store';
 import createStore from '../../store/createStore';
-import useSelectWeekday from '../../hooks/useSelectWeekday';
+import useAddWeekday from '../../hooks/useAddWeekday';
 // components
 import MainContainer from '../../components/blocks/Containers/MainContainer';
 import Header from '../../components/blocks/Header/Header';
@@ -22,6 +22,7 @@ import RoutineListItem from '../../components/blocks/RoutineListItem/RoutineList
 import RoutineGoal from '../../components/blocks/RoutineGoal/RoutineGoal';
 import Section from '../../components/atoms/Section/Section';
 
+
 const AddScreen = ({ navigation }) => {
   const user = userStore(state => state.currentUser)
   const [ title, setTitle ] = useState("")
@@ -29,7 +30,7 @@ const AddScreen = ({ navigation }) => {
   const [ isTemporary, setIsTemporary] = useState(false)
   const [ isTimeGoal, setIsTimeGoal ] = useState(true)
   const [ goal, setGoal ] = useState("")
-  const [ weekdays, onToggleWeekday ] = useSelectWeekday()
+  const [ weekdays, _, onToggleWeekday ] = useAddWeekday()
   const [ date, setDate ] = useState(new Date())
   const color = createStore(state => state.selectColor)
   const setSelectColor = createStore(state => state.setSelectColor)
@@ -59,12 +60,6 @@ const AddScreen = ({ navigation }) => {
     if (title.length === 0) {
       setShowModal(true)
       setModalMessage("루틴이름을 지정해주세요")
-      return
-    }
-
-    if (weekday.length === 0 && isTemporary === false) {
-      setShowModal(true)
-      setModalMessage("반복할 요일을 선택해주세요")
       return
     }
 
