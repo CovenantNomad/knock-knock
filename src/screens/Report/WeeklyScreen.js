@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useQuery } from 'react-query';
 import { findAllRoutine } from '../../api/routines';
 import userStore from '../../store/store';
@@ -34,14 +34,14 @@ const WeeklyScreen = () => {
   })
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>이번주 실천기록</Text>
       {isLoading ? (
         <Text>로딩중...</Text>
       ) : (
         refinedData.map(item => <ReportCard key={item.routine} data={item} /> )
       )}
-    </View>
+    </ScrollView>
   );
 }
 
